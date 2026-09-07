@@ -7,7 +7,8 @@
 **https://make-kzk.github.io/vh48/**
 
 - [Каталог мокапов](https://make-kzk.github.io/vh48/)
-- [Demo flow](https://make-kzk.github.io/vh48/mockups/demo/index.html)
+- [**VibeHunt mockup**](https://make-kzk.github.io/vh48/mockups/vibe-hunt/index.html) — из VibeHunt88/web
+- [Demo flow](https://make-kzk.github.io/vh48/mockups/demo/index.html) — упрощённый пример на vh48-роутере
 
 ### Одноразовая настройка GitHub Pages (как у [Vaibee](https://make-kzk.github.io/Vaibee/))
 

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>VibeHunt — Мой Карьерный Код</title>
+  <template id="__bundler_thumbnail" data-bg-color="#1A1A1A">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#1A1A1A"/>
+      <text x="600" y="380" font-family="Inter, sans-serif" font-size="120" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="-4">Vibe<tspan fill="#F26522">Hunt</tspan></text>
+      <text x="600" y="460" font-family="Inter, sans-serif" font-size="32" font-weight="500" fill="#808080" text-anchor="middle">Карьерный Код</text>
+    </svg>
+  </template>
+  <link rel="stylesheet" href="vh-tokens.css">
+  <style>
+    body { background: var(--vh-bg-page); }
+
+    /* ── AUTH HEADER (same as dashboard) ── */
+    .user-chip {
+      display: flex; align-items: center; gap: var(--vh-space-2);
+      padding: 6px 10px 6px 6px;
+      border-radius: var(--vh-radius-pill);
+      border: 1px solid var(--vh-border-color);
+      background: var(--vh-bg-surface);
+      cursor: pointer;
+      transition: border-color var(--vh-duration-fast), box-shadow var(--vh-duration-fast);
+      position: relative;
+    }
+    .user-chip:hover { border-color: var(--vh-gray-400); }
+    .user-avatar { width:28px;height:28px;border-radius:50%;background:var(--vh-color-primary);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0; }
+    .user-name { font-size:var(--vh-text-sm);font-weight:500;color:var(--vh-color-ink); }
+    .user-chevron { width:14px;height:14px;stroke:var(--vh-color-muted);stroke-width:2;fill:none;transition:transform var(--vh-duration-fast); }
+    .user-chip.open .user-chevron { transform:rotate(180deg); }
+    .user-dropdown { display:none;position:absolute;top:calc(100% + 8px);right:0;min-width:200px;background:var(--vh-bg-surface);border:1px solid var(--vh-border-color);border-radius:var(--vh-radius-lg);box-shadow:var(--vh-shadow-lg);padding:var(--vh-space-2);z-index:200; }
+    .user-chip.open .user-dropdown { display:block;animation:vhFadeIn 0.15s ease both; }
+    .dropdown-item { display:flex;align-items:center;gap:var(--vh-space-3);padding:var(--vh-space-2) var(--vh-space-3);font-size:var(--vh-text-sm);color:var(--vh-color-slate);border-radius:var(--vh-radius-sm);cursor:pointer;transition:background var(--vh-duration-fast);text-decoration:none; }
+    .dropdown-item:hover { background:var(--vh-gray-50);color:var(--vh-color-ink);text-decoration:none; }
+    .dropdown-item svg { width:15px;height:15px;stroke:var(--vh-color-muted);stroke-width:1.5;fill:none;flex-shrink:0; }
+    .dropdown-sep { height:1px;background:var(--vh-border-color);margin:var(--vh-space-2) 0; }
+    .dropdown-item.danger { color:var(--vh-sem-danger); }
+    .dropdown-item.danger svg { stroke:var(--vh-sem-danger); }
+    .dropdown-item.danger:hover { background:#fff5f5; }
+
+    /* ── PAGE ── */
+    .results-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: var(--vh-space-12) var(--vh-space-6) var(--vh-space-20);
+    }
+
+    /* Breadcrumb */
+    .breadcrumb { display:flex;align-items:center;gap:var(--vh-space-2);font-size:var(--vh-text-xs);color:var(--vh-color-muted);margin-bottom:var(--vh-space-8); }
+    .breadcrumb a { color:var(--vh-color-muted);transition:color var(--vh-duration-fast); }
+    .breadcrumb a:hover { color:var(--vh-color-ink);text-decoration:none; }
+    .breadcrumb-sep { color:var(--vh-gray-300); }
+
+    /* Hero profile card */
+    .profile-hero {
+      background: var(--vh-color-ink);
+      border-radius: var(--vh-radius-xl);
+      padding: 44px 48px;
+      margin-bottom: var(--vh-space-6);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--vh-space-10);
+      align-items: center;
+    }
+    .profile-hero-left {}
+    .profile-hero-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 12px;
+      background: rgba(242,101,34,0.15);
+      border: 1px solid rgba(242,101,34,0.25);
+      border-radius: var(--vh-radius-pill);
+      font-size: var(--vh-text-xs);
+      font-weight: var(--vh-fw-semibold);
+      color: var(--vh-color-primary);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: var(--vh-space-4);
+    }
+    .profile-hero h1 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: var(--vh-fw-bold);
+      color: #fff;
+      letter-spacing: -0.025em;
+      margin-bottom: var(--vh-space-3);
+    }
+    .profile-hero-archetype {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: var(--vh-fw-extrabold);
+      color: var(--vh-color-primary);
+      letter-spacing: -0.03em;
+      margin-bottom: var(--vh-space-4);
+      line-height: 1.1;
+    }
+    .profile-hero-desc {
+      font-size: var(--vh-text-base);
+      color: rgba(255,255,255,0.55);
+      line-height: var(--vh-lh-relaxed);
+      max-width: 520px;
+    }
+    .profile-hero-meta {
+      display: flex; align-items: center; gap: var(--vh-space-5);
+      margin-top: var(--vh-space-6);
+      padding-top: var(--vh-space-5);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .profile-hero-meta-item { display: flex; flex-direction: column; gap: 3px; }
+    .profile-hero-meta-val { font-size: var(--vh-text-sm); font-weight: var(--vh-fw-semibold); color: #fff; }
+    .profile-hero-meta-lbl { font-size: var(--vh-text-xs); color: rgba(255,255,255,0.35); }
+    .profile-hero-meta-sep { width: 1px; height: 32px; background: rgba(255,255,255,0.08); }
+
+    .profile-hero-actions {
+      display: flex; flex-direction: column; gap: var(--vh-space-3); align-items: flex-end;
+    }
+
+    /* Two column layout */
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: var(--vh-space-6);
+      align-items: start;
+    }
+    .results-left { display: flex; flex-direction: column; gap: var(--vh-space-5); }
+    .results-right { display: flex; flex-direction: column; gap: var(--vh-space-5); position: sticky; top: calc(var(--vh-topbar-height) + 24px); }
+
+    /* Section card */
+    .res-card {
+      background: var(--vh-bg-surface);
+      border: 1px solid var(--vh-border-color);
+      border-radius: var(--vh-radius-xl);
+      padding: 32px 32px;
+    }
+    .res-card-title {
+      font-size: var(--vh-text-base);
+      font-weight: var(--vh-fw-semibold);
+      color: var(--vh-color-ink);
+      margin-bottom: var(--vh-space-5);
+      display: flex;
+      align-items: center;
+      gap: var(--vh-space-2);
+    }
+    .res-card-title-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+    }
+
+    /* Trait bars */
+    .trait-list { display: flex; flex-direction: column; gap: var(--vh-space-4); }
+    .trait-row {}
+    .trait-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--vh-space-2); }
+    .trait-name { font-size: var(--vh-text-sm); font-weight: var(--vh-fw-medium); color: var(--vh-color-ink); }
+    .trait-val { font-size: var(--vh-text-sm); font-weight: var(--vh-fw-semibold); color: var(--vh-color-primary); }
+    .trait-bar { height: 6px; background: var(--vh-gray-100); border-radius: var(--vh-radius-pill); overflow: hidden; }
+    .trait-fill { height: 100%; border-radius: var(--vh-radius-pill); background: var(--vh-color-primary); transition: width 1s var(--vh-ease); }
+    .trait-fill.violet { background: var(--vh-color-secondary); }
+    .trait-fill.green { background: var(--vh-sem-success); }
+
+    /* Tag cloud */
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: var(--vh-space-2); }
+    .tag-item {
+      padding: 6px 14px;
+      border-radius: var(--vh-radius-pill);
+      font-size: var(--vh-text-sm);
+      font-weight: var(--vh-fw-medium);
+    }
+    .tag-item.orange { background: var(--vh-color-primary-l); color: var(--vh-color-primary); }
+    .tag-item.violet { background: var(--vh-color-secondary-l); color: var(--vh-color-secondary); }
+    .tag-item.neutral { background: var(--vh-gray-100); color: var(--vh-color-slate); }
+
+    /* Insight blocks */
+    .insight-list { display: flex; flex-direction: column; gap: var(--vh-space-4); }
+    .insight-item {
+      display: flex; align-items: flex-start; gap: var(--vh-space-4);
+      padding: var(--vh-space-4) var(--vh-space-5);
+      background: var(--vh-gray-50);
+      border-radius: var(--vh-radius-lg);
+      border: 1px solid var(--vh-border-color);
+    }
+    .insight-icon { width: 32px; height: 32px; border-radius: var(--vh-radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .insight-icon svg { width: 16px; height: 16px; stroke-width: 1.5; fill: none; }
+    .insight-icon.orange { background: var(--vh-color-primary-l); }
+    .insight-icon.orange svg { stroke: var(--vh-color-primary); }
+    .insight-icon.violet { background: var(--vh-color-secondary-l); }
+    .insight-icon.violet svg { stroke: var(--vh-color-secondary); }
+    .insight-icon.red { background: #fff5f5; }
+    .insight-icon.red svg { stroke: var(--vh-sem-danger); }
+    .insight-icon.green { background: #f0fdf4; }
+    .insight-icon.green svg { stroke: var(--vh-sem-success); }
+    .insight-body {}
+    .insight-title { font-size: var(--vh-text-sm); font-weight: var(--vh-fw-semibold); color: var(--vh-color-ink); margin-bottom: 3px; }
+    .insight-text { font-size: var(--vh-text-sm); color: var(--vh-color-muted); line-height: var(--vh-lh-relaxed); }
+
+    /* Risk meter */
+    .risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--vh-space-3); }
+    .risk-item { padding: var(--vh-space-4); background: var(--vh-gray-50); border-radius: var(--vh-radius-lg); border: 1px solid var(--vh-border-color); }
+    .risk-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--vh-space-3); }
+    .risk-name { font-size: var(--vh-text-xs); font-weight: var(--vh-fw-semibold); color: var(--vh-color-slate); }
+    .risk-level {
+      font-size: var(--vh-text-xs); font-weight: var(--vh-fw-bold);
+      padding: 2px 8px; border-radius: var(--vh-radius-pill);
+    }
+    .risk-level.low { background: #f0fdf4; color: var(--vh-sem-success); }
+    .risk-level.medium { background: #fffbeb; color: var(--vh-sem-warning); }
+    .risk-level.high { background: #fff5f5; color: var(--vh-sem-danger); }
+    .risk-bar-wrap { height: 4px; background: var(--vh-gray-200); border-radius: var(--vh-radius-pill); overflow: hidden; }
+    .risk-bar-fill { height: 100%; border-radius: var(--vh-radius-pill); transition: width 1s var(--vh-ease); }
+    .risk-bar-fill.low { background: var(--vh-sem-success); }
+    .risk-bar-fill.medium { background: var(--vh-sem-warning); }
+    .risk-bar-fill.high { background: var(--vh-sem-danger); }
+
+    /* Radar chart wrapper */
+    .radar-wrap { display: flex; align-items: center; justify-content: center; padding: var(--vh-space-4) 0; }
+    .radar-wrap canvas { max-width: 320px; width: 100%; }
+
+    /* Manager tips */
+    .manager-tips { display: flex; flex-direction: column; gap: var(--vh-space-3); }
+    .tip-item {
+      display: flex; align-items: flex-start; gap: var(--vh-space-3);
+      font-size: var(--vh-text-sm); color: var(--vh-color-slate);
+      line-height: var(--vh-lh-relaxed);
+    }
+    .tip-num {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--vh-color-ink); color: #fff;
+      font-size: 11px; font-weight: var(--vh-fw-bold);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* Share block */
+    .share-block { display: flex; flex-direction: column; gap: var(--vh-space-3); }
+    .share-link-row {
+      display: flex; align-items: center; gap: var(--vh-space-2);
+      padding: var(--vh-space-3) var(--vh-space-4);
+      background: var(--vh-gray-50);
+      border: 1px solid var(--vh-border-color);
+      border-radius: var(--vh-radius-md);
+      font-size: var(--vh-text-sm);
+      color: var(--vh-color-muted);
+      font-family: monospace;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    /* Divider label */
+    .section-divider {
+      display: flex; align-items: center; gap: var(--vh-space-3);
+      font-size: var(--vh-text-xs); font-weight: var(--vh-fw-semibold);
+      color: var(--vh-color-muted); text-transform: uppercase; letter-spacing: 0.08em;
+      margin: var(--vh-space-2) 0;
+    }
+    .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--vh-border-color); }
+
+    @media (max-width: 960px) {
+      .results-grid { grid-template-columns: 1fr; }
+      .results-right { position: static; }
+      .profile-hero { grid-template-columns: 1fr; gap: var(--vh-space-6); }
+      .profile-hero-actions { flex-direction: row; align-items: flex-start; }
+      .risk-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .results-wrap { padding: var(--vh-space-8) var(--vh-space-4) var(--vh-space-16); }
+      .profile-hero { padding: 28px 24px; }
+      .res-card { padding: 24px 20px; }
+      .risk-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- AUTH HEADER -->
+<header class="vh-topbar scrolled" id="topbar">
+  <div class="vh-topbar-inner">
+    <a href="index.html" class="vh-logo">Vibe<span>Hunt</span></a>
+    <nav class="vh-nav" aria-label="Основная навигация">
+      <a href="dashboard.html" class="vh-nav-link">Мой профиль</a>
+      <a href="blog.html" class="vh-nav-link">Блог</a>
+      <a href="faq.html" class="vh-nav-link">FAQ</a>
+    </nav>
+    <div class="vh-topbar-actions">
+      <a href="signup.html" class="vh-btn" style="background:var(--vh-color-primary-l);color:var(--vh-color-primary);border:none;height:44px;padding:0 20px;font-size:var(--vh-text-sm);font-weight:600;border-radius:var(--vh-radius-md);">Пройти тест снова</a>
+      <div class="user-chip" id="userChip" onclick="toggleDropdown()" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
+        <div class="user-avatar">АИ</div>
+        <span class="user-name">Алия И.</span>
+        <svg class="user-chevron" viewBox="0 0 14 14"><path d="M3 5l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="user-dropdown" role="menu">
+          <a href="dashboard.html" class="dropdown-item" role="menuitem"><svg viewBox="0 0 16 16"><circle cx="8" cy="6" r="3"/><path d="M2 14c0-3.3 2.7-5 6-5s6 1.7 6 5" stroke-linecap="round"/></svg>Мой профиль</a>
+          <a href="results.html" class="dropdown-item" role="menuitem"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8h6M5 5h6M5 11h4" stroke-linecap="round"/></svg>Результаты</a>
+          <a href="#" class="dropdown-item" role="menuitem"><svg viewBox="0 0 16 16"><path d="M8 2v8M5 7l3 3 3-3" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 12h10" stroke-linecap="round"/></svg>Скачать PDF</a>
+          <div class="dropdown-sep"></div>
+          <a href="index.html" class="dropdown-item danger" role="menuitem"><svg viewBox="0 0 16 16"><path d="M10 8H2M5 5l-3 3 3 3" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 3h5v10H8" stroke-linecap="round" stroke-linejoin="round"/></svg>Выйти</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="results-wrap">
+
+    <nav class="breadcrumb" aria-label="Навигация">
+      <a href="dashboard.html">Мой профиль</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>Карьерный Код</span>
+    </nav>
+
+    <!-- HERO -->
+    <div class="profile-hero">
+      <div class="profile-hero-left">
+        <div class="profile-hero-tag">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="#F26522" stroke-width="1.2"/><path d="M5 3v2.5L6.5 7" stroke="#F26522" stroke-width="1.2" stroke-linecap="round"/></svg>
+          Карьерный Код · 25 апреля 2025
+        </div>
+        <h1>Твой поведенческий архетип</h1>
+        <div class="profile-hero-archetype">Стратегический Лидер</div>
+        <p class="profile-hero-desc">Ты сочетаешь высокую инициативность с системным мышлением. Твоя суперсила — превращать сложные задачи в чёткие планы и вести команду к результату без микроменеджмента.</p>
+        <div class="profile-hero-meta">
+          <div class="profile-hero-meta-item">
+            <span class="profile-hero-meta-val">DISC: DC</span>
+            <span class="profile-hero-meta-lbl">Профиль</span>
+          </div>
+          <div class="profile-hero-meta-sep"></div>
+          <div class="profile-hero-meta-item">
+            <span class="profile-hero-meta-val">Высокая</span>
+            <span class="profile-hero-meta-lbl">Автономность</span>
+          </div>
+          <div class="profile-hero-meta-sep"></div>
+          <div class="profile-hero-meta-item">
+            <span class="profile-hero-meta-val">Аналитик</span>
+            <span class="profile-hero-meta-lbl">Стиль мышления</span>
+          </div>
+          <div class="profile-hero-meta-sep"></div>
+          <div class="profile-hero-meta-item">
+            <span class="profile-hero-meta-val">Средний</span>
+            <span class="profile-hero-meta-lbl">Риск выгорания</span>
+          </div>
+        </div>
+      </div>
+      <div class="profile-hero-actions">
+        <button class="vh-btn vh-btn--primary" onclick="copyLink()">Поделиться профилем</button>
+        <a href="#" class="vh-btn" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.12);height:44px;padding:0 20px;font-size:var(--vh-text-sm);font-weight:600;border-radius:var(--vh-radius-md);display:inline-flex;align-items:center;">Скачать PDF</a>
+      </div>
+    </div>
+
+    <!-- GRID -->
+    <div class="results-grid">
+      <div class="results-left">
+
+        <!-- Суперсилы -->
+        <div class="res-card">
+          <div class="res-card-title"><div class="res-card-title-dot" style="background:var(--vh-color-primary)"></div>Суперсилы и таланты</div>
+          <div class="tag-cloud">
+            <span class="tag-item orange">Стратегическое мышление</span>
+            <span class="tag-item orange">Лидерство в неопределённости</span>
+            <span class="tag-item orange">Системный анализ</span>
+            <span class="tag-item neutral">Принятие решений</span>
+            <span class="tag-item neutral">Мотивация команды</span>
+            <span class="tag-item neutral">Работа с данными</span>
+          </div>
+        </div>
+
+        <!-- Поведенческий профиль — черты -->
+        <div class="res-card">
+          <div class="res-card-title"><div class="res-card-title-dot" style="background:var(--vh-color-secondary)"></div>Поведенческие шкалы</div>
+          <div class="trait-list" id="traitList">
+            <div class="trait-row">
+              <div class="trait-header"><span class="trait-name">Доминантность (D)</span><span class="trait-val">82%</span></div>
+              <div class="trait-bar"><div class="trait-fill" data-w="82"></div></div>
+            </div>
+            <div class="trait-row">
+              <div class="trait-header"><span class="trait-name">Влияние (I)</span><span class="trait-val">54%</span></div>
+              <div class="trait-bar"><div class="trait-fill violet" data-w="54"></div></div>
+            </div>
+            <div class="trait-row">
+              <div class="trait-header"><span class="trait-name">Стабильность (S)</span><span class="trait-val">38%</span></div>
+              <div class="trait-bar"><div class="trait-fill violet" data-w="38"></div></div>
+            </div>
+            <div class="trait-row">
+              <div class="trait-header"><span class="trait-name">Добросовестность (C)</span><span class="trait-val">71%</span></div>
+              <div class="trait-bar"><div class="trait-fill green" data-w="71"></div></div>
+            </div>
+            <div class="trait-row">
+              <div class="trait-header"><span class="trait-name">Автономность</span><span class="trait-val">88%</span></div>
+              <div class="trait-bar"><div class="trait-fill" data-w="88"></div></div>
+            </div>
+            <div class="trait-row">
+              <div class="trait-header"><span class="trait-name">Темп работы</span><span class="trait-val">75%</span></div>
+              <div class="trait-bar"><div class="trait-fill green" data-w="75"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Источники энергии / стоп-факторы -->
+        <div class="res-card">
+          <div class="res-card-title"><div class="res-card-title-dot" style="background:var(--vh-sem-success)"></div>Источники энергии</div>
+          <div class="insight-list">
+            <div class="insight-item">
+              <div class="insight-icon green"><svg viewBox="0 0 16 16"><path d="M8 2l1.5 4.5H14l-3.7 2.7 1.4 4.3L8 11 4.3 13.5l1.4-4.3L2 6.5h4.5z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="insight-body"><div class="insight-title">Амбициозные цели и вызовы</div><div class="insight-text">Ты работаешь с максимальной отдачей, когда видишь масштаб задачи и возможность реального влияния.</div></div>
+            </div>
+            <div class="insight-item">
+              <div class="insight-icon orange"><svg viewBox="0 0 16 16"><path d="M8 2C4.7 2 2 4.7 2 8s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6z"/><path d="M8 5v3.5l2 1.5" stroke-linecap="round"/></svg></div>
+              <div class="insight-body"><div class="insight-title">Автономность и доверие</div><div class="insight-text">Свобода принятия решений и доверие руководителя — ключевые условия для твоей продуктивности.</div></div>
+            </div>
+            <div class="insight-item">
+              <div class="insight-icon violet"><svg viewBox="0 0 16 16"><circle cx="6" cy="6" r="3"/><circle cx="11" cy="11" r="3"/><path d="M8.5 7.5l1 1" stroke-linecap="round"/></svg></div>
+              <div class="insight-body"><div class="insight-title">Экспертная команда</div><div class="insight-text">Работа рядом с профессионалами высокого уровня стимулирует тебя расти и предлагать лучшие решения.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Стоп-факторы -->
+        <div class="res-card">
+          <div class="res-card-title"><div class="res-card-title-dot" style="background:var(--vh-sem-danger)"></div>Стоп-факторы — красные флаги</div>
+          <div class="insight-list">
+            <div class="insight-item">
+              <div class="insight-icon red"><svg viewBox="0 0 16 16"><path d="M8 3v5M8 11v1" stroke-linecap="round"/><circle cx="8" cy="8" r="6"/></svg></div>
+              <div class="insight-body"><div class="insight-title">Микроменеджмент</div><div class="insight-text">Избыточный контроль и недоверие к твоим решениям резко снижают мотивацию и продуктивность.</div></div>
+            </div>
+            <div class="insight-item">
+              <div class="insight-icon red"><svg viewBox="0 0 16 16"><path d="M2 8h12M8 2v12" stroke-linecap="round"/></svg></div>
+              <div class="insight-body"><div class="insight-title">Размытые цели</div><div class="insight-text">Отсутствие чётких приоритетов и постоянно меняющиеся задачи — главный источник стресса для тебя.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Советы руководителю -->
+        <div class="res-card">
+          <div class="res-card-title"><div class="res-card-title-dot" style="background:var(--vh-color-ink)"></div>Советы руководителю</div>
+          <div class="manager-tips">
+            <div class="tip-item"><div class="tip-num">1</div><span>Ставь чёткие цели с понятными критериями успеха — это заряжает, а не ограничивает.</span></div>
+            <div class="tip-item"><div class="tip-num">2</div><span>Давай максимальную автономию в тактике при согласовании стратегии. Не проверяй каждый шаг.</span></div>
+            <div class="tip-item"><div class="tip-num">3</div><span>Признавай вклад публично — это важный мотиватор, хотя она редко просит об этом сама.</span></div>
+            <div class="tip-item"><div class="tip-num">4</div><span>В периоды неопределённости делись контекстом и причинами решений — это снижает тревогу.</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT SIDEBAR -->
+      <div class="results-right">
+
+        <!-- Radar chart -->
+        <div class="res-card">
+          <div class="res-card-title"><div class="res-card-title-dot" style="background:var(--vh-color-primary)"></div>Профиль по осям</div>
+          <div class="radar-wrap">
+            <canvas id="radarChart" width="320" height="320"></canvas>
+          </div>
+        </div>
+
+        <!-- Риски -->
+        <div class="res-card">
+          <div class="res-card-title"><div class="res-card-title-dot" style="background:var(--vh-sem-warning)"></div>Риски выгорания</div>
+          <div class="risk-grid">
+            <div class="risk-item">
+              <div class="risk-header"><span class="risk-name">Перегрузка</span><span class="risk-level medium">Средний</span></div>
+              <div class="risk-bar-wrap"><div class="risk-bar-fill medium" style="width:55%"></div></div>
+            </div>
+            <div class="risk-item">
+              <div class="risk-header"><span class="risk-name">Конфликты</span><span class="risk-level low">Низкий</span></div>
+              <div class="risk-bar-wrap"><div class="risk-bar-fill low" style="width:20%"></div></div>
+            </div>
+            <div class="risk-item">
+              <div class="risk-header"><span class="risk-name">Демотивация</span><span class="risk-level low">Низкий</span></div>
+              <div class="risk-bar-wrap"><div class="risk-bar-fill low" style="width:18%"></div></div>
+            </div>
+            <div class="risk-item">
+              <div class="risk-header"><span class="risk-name">Стресс</span><span class="risk-level medium">Средний</span></div>
+              <div class="risk-bar-wrap"><div class="risk-bar-fill medium" style="width:48%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Карьерные рекомендации -->
+        <div class="res-card">
+          <div class="res-card-title"><div class="res-card-title-dot" style="background:var(--vh-color-secondary)"></div>Карьерные рекомендации</div>
+          <div class="insight-list">
+            <div class="insight-item" style="background:var(--vh-color-secondary-l);border-color:rgba(107,78,255,0.12)">
+              <div class="insight-icon violet"><svg viewBox="0 0 16 16"><path d="M3 12l4-8 3 4 2-3 4 7H3z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="insight-body"><div class="insight-title">Роли с высокой автономией</div><div class="insight-text">Product Owner, Team Lead, Strategy Director — среды, где тебе доверяют результат.</div></div>
+            </div>
+            <div class="insight-item">
+              <div class="insight-icon orange"><svg viewBox="0 0 16 16"><path d="M8 2C4.7 2 2 4.7 2 8s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6z"/><path d="M8 5v3.5l2 1.5" stroke-linecap="round"/></svg></div>
+              <div class="insight-body"><div class="insight-title">Избегай жёстко регламентированных позиций</div><div class="insight-text">Государственные структуры с высокой бюрократией и микроменеджментом — зона высокого риска.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Share -->
+        <div class="res-card">
+          <div class="res-card-title"><div class="res-card-title-dot" style="background:var(--vh-gray-400)"></div>Поделиться профилем</div>
+          <div class="share-block">
+            <div class="share-link-row">vibehunt.ru/p/aliya-2025</div>
+            <button class="vh-btn vh-btn--secondary vh-btn--full" onclick="copyLink()">Скопировать ссылку</button>
+            <a href="#" class="vh-btn vh-btn--primary vh-btn--full">Скачать PDF</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="vh-footer-dark">
+  <div class="vh-footer-dark-inner">
+    <div class="vhfd-top">
+      <div class="vhfd-brand">
+        <a href="index.html" class="vh-logo" style="color:rgba(255,255,255,0.9)">Vibe<span style="color:var(--vh-color-primary)">Hunt</span></a>
+        <p class="vhfd-desc">Платформа для создания успешных команд и гармоничного карьерного планирования.</p>
+        <div class="vhfd-social">
+          <a href="#" aria-label="Telegram">TG</a>
+          <a href="#" aria-label="Instagram">IN</a>
+          <a href="#" aria-label="YouTube">YT</a>
+        </div>
+      </div>
+      <div class="vhfd-links">
+        <div class="vhfd-col">
+          <div class="vhfd-col-title">Продукт</div>
+          <a href="index.html">Главная</a>
+          <a href="signup.html">Начать тест</a>
+          <a href="faq.html">FAQ</a>
+        </div>
+        <div class="vhfd-col">
+          <div class="vhfd-col-title">Компания</div>
+          <a href="blog.html">Блог</a>
+          <a href="contacts.html">Контакты</a>
+        </div>
+        <div class="vhfd-col">
+          <div class="vhfd-col-title">Правовое</div>
+          <a href="privacy.html">Политика конфиденциальности</a>
+          <a href="#">Условия использования</a>
+        </div>
+      </div>
+    </div>
+    <div class="vhfd-bottom">
+      <span>© VibeHunter, 2025. Все права защищены.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Dropdown
+  function toggleDropdown() {
+    const chip = document.getElementById('userChip');
+    const open = chip.classList.toggle('open');
+    chip.setAttribute('aria-expanded', String(open));
+  }
+  document.addEventListener('click', (e) => {
+    const chip = document.getElementById('userChip');
+    if (chip && !chip.contains(e.target)) { chip.classList.remove('open'); chip.setAttribute('aria-expanded','false'); }
+  });
+
+  function copyLink() {
+    navigator.clipboard.writeText('https://vibehunt.ru/p/aliya-2025').catch(()=>{});
+    const btns = document.querySelectorAll('button');
+    btns.forEach(b => { if (b.textContent.includes('Скопировать') || b.textContent.includes('Поделиться')) { const orig = b.textContent; b.textContent = 'Скопировано'; setTimeout(() => b.textContent = orig, 2000); }});
+  }
+
+  // Animate trait bars
+  setTimeout(() => {
+    document.querySelectorAll('.trait-fill').forEach(el => {
+      el.style.width = (el.dataset.w || 0) + '%';
+    });
+  }, 100);
+
+  // ── RADAR CHART (pure canvas, no dependencies) ──
+  (function drawRadar() {
+    const canvas = document.getElementById('radarChart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const size = 320;
+    canvas.width = size * dpr;
+    canvas.height = size * dpr;
+    canvas.style.width = size + 'px';
+    canvas.style.height = size + 'px';
+    ctx.scale(dpr, dpr);
+
+    const cx = size / 2, cy = size / 2, R = 120;
+    const labels = ['Доминантность', 'Влияние', 'Стабильность', 'Добросовестность', 'Автономность', 'Темп'];
+    const values = [0.82, 0.54, 0.38, 0.71, 0.88, 0.75];
+    const N = labels.length;
+    const angleStep = (Math.PI * 2) / N;
+    const startAngle = -Math.PI / 2;
+
+    // Background rings
+    for (let r = 1; r <= 5; r++) {
+      ctx.beginPath();
+      for (let i = 0; i < N; i++) {
+        const angle = startAngle + i * angleStep;
+        const x = cx + Math.cos(angle) * R * (r / 5);
+        const y = cy + Math.sin(angle) * R * (r / 5);
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.strokeStyle = r === 5 ? '#E8E8E8' : '#F3F3F3';
+      ctx.lineWidth = r === 5 ? 1.5 : 1;
+      ctx.stroke();
+    }
+
+    // Axes
+    for (let i = 0; i < N; i++) {
+      const angle = startAngle + i * angleStep;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(cx + Math.cos(angle) * R, cy + Math.sin(angle) * R);
+      ctx.strokeStyle = '#E8E8E8';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+
+    // Data polygon
+    ctx.beginPath();
+    for (let i = 0; i < N; i++) {
+      const angle = startAngle + i * angleStep;
+      const x = cx + Math.cos(angle) * R * values[i];
+      const y = cy + Math.sin(angle) * R * values[i];
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(242,101,34,0.12)';
+    ctx.fill();
+    ctx.strokeStyle = '#F26522';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Data points
+    for (let i = 0; i < N; i++) {
+      const angle = startAngle + i * angleStep;
+      const x = cx + Math.cos(angle) * R * values[i];
+      const y = cy + Math.sin(angle) * R * values[i];
+      ctx.beginPath();
+      ctx.arc(x, y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = '#F26522';
+      ctx.fill();
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
+    // Labels
+    ctx.fillStyle = '#404040';
+    ctx.font = '500 11px Inter, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    for (let i = 0; i < N; i++) {
+      const angle = startAngle + i * angleStep;
+      const labelR = R + 22;
+      const x = cx + Math.cos(angle) * labelR;
+      const y = cy + Math.sin(angle) * labelR;
+      ctx.fillText(labels[i], x, y);
+    }
+  })();
+</script>
+<script src="vh-demo-nav.js"></script>
+</body>
+</html>
