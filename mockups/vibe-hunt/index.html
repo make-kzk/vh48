@@ -8,19 +8,20 @@
   <link rel="stylesheet" href="vh-tokens.css">
   <link rel="stylesheet" href="vh-components.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="landing-develop.css">
 </head>
 <body>
   <div class="app-root">
     <main class="screens">
 
-      <!-- Landing — from VibeHunt88/web uploads -->
-      <section class="screen active" data-screen="landing">
+      <!-- Landing — Develop.Me-inspired layout -->
+      <section class="screen active landing-dm" data-screen="landing">
         <header class="vh-topbar" id="topbar">
           <div class="vh-topbar-inner">
             <button type="button" class="vh-logo" data-nav="landing">Vibe<span>Hunt</span></button>
             <nav class="vh-nav" aria-label="Основная навигация">
-              <a href="#hero" class="vh-nav-link">Для кандидатов</a>
-              <a href="#advantages" class="vh-nav-link">Для компаний</a>
+              <a href="#features" class="vh-nav-link">Возможности</a>
+              <a href="#audience" class="vh-nav-link">Для кого</a>
             </nav>
             <div class="vh-topbar-actions">
               <button type="button" class="vh-login-link" data-nav="cabinet">Войти</button>
@@ -29,86 +30,173 @@
           </div>
         </header>
 
-        <section class="hero" id="hero">
-          <div class="vh-container hero-inner">
-            <div class="hero-copy">
-              <h1 class="hero-title"><span class="hero-title-line"><em>VibeHunt</em> — платформа для</span><span class="hero-title-line">создания успешных команд</span></h1>
-              <div class="hero-lead">
-                <p class="hero-subtitle"><span class="hero-subtitle-line">Сотрудники, чьи сильные стороны совпадают с требованиями роли,</span><span class="hero-subtitle-line">показывают на 21–36% более высокую производительность.</span></p>
-                <p class="hero-source"><strong>Harvard Business Review</strong> · Исследование вовлечённости сотрудников</p>
-              </div>
+        <section class="hero-dm" id="hero">
+          <div class="hero-dm__blob hero-dm__blob--1" aria-hidden="true"></div>
+          <div class="hero-dm__blob hero-dm__blob--2" aria-hidden="true"></div>
+          <div class="hero-dm__inner">
+            <span class="hero-dm__pill">Платформа для успешных команд</span>
+            <h1 class="hero-dm__title">
+              <span class="hero-dm__title-line"><em>VibeHunt</em> — платформа для</span>
+              <span class="hero-dm__title-line">создания успешных команд</span>
+            </h1>
+            <p class="hero-dm__support">
+              <span class="hero-dm__support-line">Сотрудники, чьи сильные стороны совпадают с требованиями роли,</span>
+              <span class="hero-dm__support-line">показывают на 21–36% более высокую производительность.</span>
+            </p>
+            <p class="hero-dm__source"><strong>Harvard Business Review</strong> · Исследование вовлечённости сотрудников</p>
+            <div class="hero-dm__actions">
+              <button type="button" class="vh-btn vh-btn--primary hero-dm__cta" data-nav="register">Начать исследование</button>
+              <button type="button" class="hero-dm__cta-secondary" data-nav="cabinet">Посмотреть кабинет →</button>
             </div>
-            <div class="hero-tabs">
-              <button class="hero-tab active-orange" id="tabEmployee" type="button" onclick="switchTab('employee')">Для сотрудников</button>
-              <button class="hero-tab" id="tabCompany" type="button" onclick="switchTab('company')">Для компаний</button>
+            <div class="hero-dm__trust">
+              <span>Бесплатно · ~25 минут</span>
+              <span class="hero-dm__trust-divider" aria-hidden="true">|</span>
+              <span>Более 50 факторов профиля</span>
             </div>
-            <div class="hero-panel visible" id="panelEmployee">
-              <h2 class="hero-panel-title">Раскрой свой истинный потенциал</h2>
-              <div class="hero-cards">
-                <div class="hero-card"><div class="hero-card-icon orange">◎</div><h3>Пойми свои сильные стороны</h3><p>Узнай, в каких условиях ты работаешь максимально эффективно</p></div>
-                <div class="hero-card"><div class="hero-card-icon orange">→</div><h3>Найди идеальную среду</h3><p>Определи условия и роли, где твои ценности совпадают с работой</p></div>
-                <div class="hero-card"><div class="hero-card-icon orange">◆</div><h3>Избегай выгорания</h3><p>Выяви риски заранее и выстраивай здоровые рабочие границы</p></div>
+          </div>
+          <div class="hero-dm__preview-wrap">
+            <div class="hero-dm__preview">
+              <div class="hero-dm__preview-bar" aria-hidden="true">
+                <span class="hero-dm__preview-dot"></span>
+                <span class="hero-dm__preview-dot"></span>
+                <span class="hero-dm__preview-dot"></span>
               </div>
-              <button type="button" class="vh-btn vh-btn--outline-primary vh-btn--lg" data-nav="register">Начать исследование</button>
-            </div>
-            <div class="hero-panel" id="panelCompany">
-              <h2 class="hero-panel-title">Создавайте сильную команду</h2>
-              <div class="hero-cards">
-                <div class="hero-card"><div class="hero-card-icon violet">▣</div><h3>Экономьте время на скрининге</h3><p>Снижайте затраты на подбор до 70% через анализ ценностей</p></div>
-                <div class="hero-card"><div class="hero-card-icon violet">✓</div><h3>Повышайте удержание</h3><p>Сокращайте текучку на 40% благодаря совпадению ценностей</p></div>
-                <div class="hero-card"><div class="hero-card-icon violet">↗</div><h3>Растите эффективность</h3><p>Увеличивайте производительность через распределение ролей</p></div>
+              <div class="hero-dm__preview-body">
+                <div class="preview-card preview-card--accent">
+                  <div class="preview-card__label">Карьерный код</div>
+                  <div class="preview-card__title">Харизматичный авторитет</div>
+                  <div class="preview-card__meta">A3W · лидер по призванию</div>
+                </div>
+                <div class="preview-card">
+                  <div class="preview-card__label">Путь · 60%</div>
+                  <div class="preview-card__title">Фундаментальный тест</div>
+                  <div class="preview-card__meta">Пройден · Ценности открыты</div>
+                </div>
+                <div class="preview-card">
+                  <div class="preview-card__label">Следующий шаг</div>
+                  <div class="preview-card__title">Тест коммуникации</div>
+                  <div class="preview-card__meta">~15 мин · Пройти →</div>
+                </div>
+                <div class="preview-card">
+                  <div class="preview-card__label">Сообщество</div>
+                  <div class="preview-card__title">Среди первых 128</div>
+                  <div class="preview-card__meta">специалистов платформы</div>
+                </div>
               </div>
-              <button type="button" class="vh-btn vh-btn--secondary vh-btn--lg" data-nav="register">Узнать подробнее</button>
             </div>
           </div>
         </section>
 
-        <section class="advantages" id="advantages">
-          <div class="vh-container">
-            <div class="section-header">
-              <div class="section-label">Методология</div>
-              <h2 class="section-title">Инновационный подход к диагностике</h2>
-              <p class="section-desc">Платформа анализирует более 50 факторов, чтобы составить уникальный профессиональный профиль.</p>
+        <section class="features-dm" id="features">
+          <div class="features-dm__header">
+            <div class="features-dm__eyebrow">Методология</div>
+            <h2 class="features-dm__title">VibeHunt берёт на себя сложную работу</h2>
+            <p class="features-dm__desc">Платформа анализирует более 50 факторов, чтобы составить уникальный профессиональный профиль и помочь командам расти осознанно.</p>
+          </div>
+          <div class="features-dm__grid">
+            <article class="feature-dm">
+              <div class="feature-dm__icon">◎</div>
+              <h3>Глубокая аналитика</h3>
+              <p>Осознанный карьерный путь на основе данных, а не интуиции.</p>
+            </article>
+            <article class="feature-dm">
+              <div class="feature-dm__icon">→</div>
+              <h3>Точные рекомендации</h3>
+              <p>Риски выгорания и конфликтов — с инструментами профилактики.</p>
+            </article>
+            <article class="feature-dm">
+              <div class="feature-dm__icon">◆</div>
+              <h3>Улучшение взаимодействия</h3>
+              <p>Сильные стороны и зоны развития каждого участника команды.</p>
+            </article>
+            <article class="feature-dm">
+              <div class="feature-dm__icon violet">▣</div>
+              <h3>Экономия на скрининге</h3>
+              <p>Снижайте затраты на подбор до 70% через анализ ценностей.</p>
+            </article>
+            <article class="feature-dm">
+              <div class="feature-dm__icon violet">✓</div>
+              <h3>Удержание сотрудников</h3>
+              <p>Сокращайте текучку на 40% благодаря совпадению ценностей.</p>
+            </article>
+            <article class="feature-dm">
+              <div class="feature-dm__icon violet">↗</div>
+              <h3>Рост эффективности</h3>
+              <p>Увеличивайте производительность через распределение ролей.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="audience-dm" id="audience">
+          <div class="features-dm__header">
+            <div class="features-dm__eyebrow">Для кого</div>
+            <h2 class="features-dm__title">Кому подходит VibeHunt</h2>
+          </div>
+          <div class="audience-dm__grid">
+            <article class="audience-dm__card">
+              <h3>Для сотрудников</h3>
+              <p>Раскрой свой истинный потенциал и найди среду, где твои ценности совпадают с работой.</p>
+              <ul class="audience-dm__list">
+                <li>Пойми свои сильные стороны</li>
+                <li>Найди идеальную среду</li>
+                <li>Избегай выгорания</li>
+              </ul>
+              <button type="button" class="vh-btn vh-btn--outline-primary" data-nav="register">Начать исследование</button>
+            </article>
+            <article class="audience-dm__card">
+              <h3>Для компаний</h3>
+              <p>Создавайте сильные команды с меньшими затратами на подбор и более высоким удержанием.</p>
+              <ul class="audience-dm__list">
+                <li>Экономьте время на скрининге</li>
+                <li>Повышайте удержание</li>
+                <li>Растите эффективность</li>
+              </ul>
+              <button type="button" class="vh-btn vh-btn--secondary" data-nav="register">Узнать подробнее</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="stats-dm" id="stats">
+          <div class="features-dm__header">
+            <div class="features-dm__eyebrow">Результаты</div>
+            <h2 class="features-dm__title">Статистика эффективности</h2>
+          </div>
+          <div class="stats-dm__grid">
+            <div class="stat-dm">
+              <div class="stat-dm__value">78%</div>
+              <div class="stat-dm__label">отмечают улучшение понимания сильных сторон</div>
             </div>
-            <div class="adv-grid">
-              <div class="adv-item"><div class="adv-num">01</div><h3>Глубокая аналитика</h3><p>Осознанный карьерный путь на основе данных, а не интуиции.</p></div>
-              <div class="adv-item"><div class="adv-num">02</div><h3>Точные рекомендации</h3><p>Риски выгорания и конфликтов — с инструментами профилактики.</p></div>
-              <div class="adv-item"><div class="adv-num">03</div><h3>Улучшение взаимодействия</h3><p>Сильные стороны и зоны развития каждого участника команды.</p></div>
+            <div class="stat-dm">
+              <div class="stat-dm__value">65%</div>
+              <div class="stat-dm__label">принимают более осознанные карьерные решения</div>
+            </div>
+            <div class="stat-dm">
+              <div class="stat-dm__value">84%</div>
+              <div class="stat-dm__label">улучшают взаимодействие в команде</div>
+            </div>
+            <div class="stat-dm">
+              <div class="stat-dm__value">72%</div>
+              <div class="stat-dm__label">повышают удовлетворённость работой</div>
             </div>
           </div>
         </section>
 
-        <section class="stats" id="stats">
-          <div class="vh-container">
-            <div class="section-header">
-              <div class="section-label">Результаты</div>
-              <h2 class="section-title">Статистика эффективности</h2>
-            </div>
-            <div class="stats-grid">
-              <div class="stat-item"><div class="stat-value"><span>78</span>%</div><div class="stat-label">отмечают улучшение понимания сильных сторон</div></div>
-              <div class="stat-item"><div class="stat-value"><span>65</span>%</div><div class="stat-label">принимают более осознанные карьерные решения</div></div>
-              <div class="stat-item"><div class="stat-value"><span>84</span>%</div><div class="stat-label">улучшают взаимодействие в команде</div></div>
-              <div class="stat-item"><div class="stat-value"><span>72</span>%</div><div class="stat-label">повышают удовлетворённость работой</div></div>
-            </div>
-          </div>
-        </section>
-
-        <section class="cta-section">
-          <div class="cta-inner">
+        <section class="cta-dm">
+          <div class="cta-dm__inner">
             <h2>Сделай следующий шаг в своей карьере</h2>
             <p>Начни путь к осознанному выбору. Бесплатно, ~25 минут.</p>
             <button type="button" class="vh-btn vh-btn--primary vh-btn--lg" data-nav="register">Начать тест</button>
           </div>
         </section>
 
-        <footer class="vh-footer">
-          <div class="vh-footer-inner">
+        <footer class="footer-dm">
+          <div class="footer-dm__inner">
             <span class="vh-logo">Vibe<span>Hunt</span></span>
-            <nav class="vh-footer-nav">
+            <nav class="footer-dm__nav">
               <button type="button" data-nav="landing">Главная</button>
               <button type="button" data-nav="cabinet">Кабинет</button>
             </nav>
-            <p class="vh-footer-copy">© VibeHunt, 2025</p>
+            <p class="footer-dm__copy">© VibeHunt, 2025</p>
           </div>
         </footer>
       </section>
