@@ -2,15 +2,30 @@
   const screens = document.querySelectorAll('[data-screen]');
   let history = ['landing'];
 
+  const cjmRefreshers = [];
+  const howRefreshers = [];
+
   function showScreen(id) {
     screens.forEach((s) => s.classList.toggle('active', s.dataset.screen === id));
     document.querySelectorAll('.bottom-nav button[data-nav]').forEach((btn) => {
       btn.classList.toggle('active', btn.dataset.nav === id);
     });
     window.scrollTo(0, 0);
+    requestAnimationFrame(() => cjmRefreshers.forEach((refresh) => refresh()));
   }
 
   document.body.addEventListener('click', (e) => {
+    const audienceSet = e.target.closest('[data-audience-set]');
+    if (audienceSet) {
+      setAudience(audienceSet.dataset.audienceSet);
+    }
+
+    const audienceSwitch = e.target.closest('[data-audience-switch]');
+    if (audienceSwitch) {
+      setAudience(audienceSwitch.dataset.audienceSwitch);
+      return;
+    }
+
     const el = e.target.closest('[data-nav]');
     if (!el || el.disabled) return;
     e.preventDefault();
@@ -23,42 +38,114 @@
   });
 
   function setAudience(mode) {
-    const tabEmp = document.getElementById('tabEmployee');
-    const tabCom = document.getElementById('tabCompany');
-    if (!tabEmp || !tabCom) return;
-
     const isEmployee = mode === 'employee';
-    const btnClasses = ['vh-btn--primary', 'vh-btn--secondary', 'vh-btn--outline-primary'];
+    const btnClasses = ['vh-btn--primary', 'vh-btn--secondary', 'vh-btn--outline-primary', 'vh-btn--outline-secondary'];
 
-    tabEmp.classList.remove(...btnClasses);
-    tabCom.classList.remove(...btnClasses);
+    document.querySelectorAll('[data-audience-switch]').forEach((btn) => {
+      const isEmp = btn.dataset.audienceSwitch === 'employee';
+      btn.classList.remove(...btnClasses);
 
-    if (isEmployee) {
-      tabEmp.classList.add('vh-btn--primary');
-      tabCom.classList.add('vh-btn--outline-primary');
-    } else {
-      tabCom.classList.add('vh-btn--secondary');
-      tabEmp.classList.add('vh-btn--outline-primary');
-    }
+      if (isEmployee) {
+        btn.classList.add(isEmp ? 'vh-btn--primary' : 'vh-btn--outline-secondary');
+      } else {
+        btn.classList.add(isEmp ? 'vh-btn--outline-primary' : 'vh-btn--secondary');
+      }
 
-    tabEmp.setAttribute('aria-selected', String(isEmployee));
-    tabCom.setAttribute('aria-selected', String(!isEmployee));
-
-    document.querySelectorAll('.dm-register-btn').forEach((btn) => {
-      btn.classList.remove('vh-btn--primary', 'vh-btn--secondary');
-      btn.classList.add(isEmployee ? 'vh-btn--primary' : 'vh-btn--secondary');
+      btn.setAttribute('aria-selected', String(isEmp === isEmployee));
     });
+
+    const featuresSection = document.getElementById('features');
+    if (featuresSection) {
+      featuresSection.dataset.audienceView = mode;
+    }
   }
 
   window.switchTab = setAudience;
 
-  const tabEmp = document.getElementById('tabEmployee');
-  const tabCom = document.getElementById('tabCompany');
-  if (tabEmp && tabCom) {
-    tabEmp.addEventListener('click', () => setAudience('employee'));
-    tabCom.addEventListener('click', () => setAudience('company'));
-    setAudience('employee');
+  setAudience('employee');
+
+  function initCjm(cjm) {
+    const indicator = cjm.querySelector('.cjm-dm__indicator');
+    const steps = [...cjm.querySelectorAll('.cjm-dm__step')];
+    if (!indicator || !steps.length) return;
+
+    function setCjmStep(activeStep) {
+      steps.forEach((step) => {
+        const isActive = step === activeStep;
+        step.classList.toggle('cjm-dm__step--active', isActive);
+        const trigger = step.querySelector('.cjm-dm__step-trigger');
+        const panel = step.querySelector('.cjm-dm__step-panel');
+        trigger.setAttribute('aria-selected', String(isActive));
+        panel.hidden = !isActive;
+      });
+
+      const trigger = activeStep.querySelector('.cjm-dm__step-trigger');
+      const rail = cjm.querySelector('.cjm-dm__rail');
+      const triggerRect = trigger.getBoundingClientRect();
+      const railRect = rail.getBoundingClientRect();
+      indicator.style.transform = `translateY(${triggerRect.top - railRect.top}px)`;
+      indicator.style.height = `${triggerRect.height}px`;
+    }
+
+    steps.forEach((step) => {
+      step.querySelector('.cjm-dm__step-trigger').addEventListener('click', () => setCjmStep(step));
+    });
+
+    cjmRefreshers.push(() => setCjmStep(cjm.querySelector('.cjm-dm__step--active') || steps[0]));
+    setCjmStep(steps[0]);
   }
+
+  document.querySelectorAll('.cjm-dm').forEach(initCjm);
+
+  function initHow(how) {
+    const indicator = how.querySelector('.how-dm__indicator');
+    const steps = [...how.querySelectorAll('.how-dm__step')];
+    const panels = [...how.querySelectorAll('.how-dm__panel')];
+    if (!indicator || !steps.length) return;
+
+    function setHowStep(index) {
+      steps.forEach((step, i) => {
+        const isActive = i === index;
+        step.classList.toggle('how-dm__step--active', isActive);
+        const trigger = step.querySelector('.how-dm__tab');
+        const tabPanel = step.querySelector('.how-dm__tab-panel');
+        trigger.setAttribute('aria-selected', String(isActive));
+        if (tabPanel) tabPanel.hidden = !isActive;
+      });
+
+      panels.forEach((panel, i) => {
+        const isActive = i === index;
+        panel.classList.toggle('how-dm__panel--active', isActive);
+        panel.hidden = !isActive;
+      });
+
+      const activeStep = steps[index];
+      const rail = how.querySelector('.how-dm__rail');
+      const stepRect = activeStep.getBoundingClientRect();
+      const railRect = rail.getBoundingClientRect();
+      indicator.style.transform = `translateY(${stepRect.top - railRect.top}px)`;
+      indicator.style.height = `${stepRect.height}px`;
+    }
+
+    steps.forEach((step, index) => {
+      step.querySelector('.how-dm__tab').addEventListener('click', () => setHowStep(index));
+    });
+
+    howRefreshers.push(() => {
+      const activeIndex = steps.findIndex((step) => step.classList.contains('how-dm__step--active'));
+      setHowStep(activeIndex >= 0 ? activeIndex : 0);
+    });
+    setHowStep(0);
+  }
+
+  document.querySelectorAll('.how-dm').forEach(initHow);
+
+  window.addEventListener('resize', () => {
+    requestAnimationFrame(() => {
+      cjmRefreshers.forEach((refresh) => refresh());
+      howRefreshers.forEach((refresh) => refresh());
+    });
+  }, { passive: true });
 
   const topbar = document.getElementById('topbar');
   if (topbar) {

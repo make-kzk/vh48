@@ -16,16 +16,19 @@
 
       <!-- Landing — Develop.Me-inspired layout -->
       <section class="screen active landing-dm" data-screen="landing">
-        <header class="vh-topbar" id="topbar">
-          <div class="vh-topbar-inner">
-            <button type="button" class="vh-logo" data-nav="landing">Vibe<span>Hunt</span></button>
-            <nav class="vh-nav" aria-label="Основная навигация">
-              <a href="#features" class="vh-nav-link">Возможности</a>
-              <a href="#audience" class="vh-nav-link">Для кого</a>
-            </nav>
-            <div class="vh-topbar-actions">
-              <button type="button" class="vh-login-link" data-nav="cabinet">Войти</button>
-              <button type="button" class="vh-btn vh-btn--primary dm-register-btn" data-nav="register">Зарегистрироваться</button>
+        <header class="vh-topbar landing-dm__topbar" id="topbar">
+          <div class="vh-topbar-inner landing-dm__topbar-inner">
+            <div class="landing-dm__topbar-row">
+              <div class="landing-dm__topbar-brand">
+                <button type="button" class="vh-logo" data-nav="landing">Vibe<span>Hunt</span></button>
+              </div>
+              <nav class="landing-dm__topbar-nav" aria-label="Основная навигация">
+                <button type="button" class="vh-btn vh-btn--primary landing-dm__topbar-audience-btn" data-audience-switch="employee" role="tab" aria-selected="true">Для сотрудников</button>
+                <button type="button" class="vh-btn vh-btn--outline-secondary landing-dm__topbar-audience-btn" data-audience-switch="company" role="tab" aria-selected="false">Для компаний</button>
+                <button type="button" class="landing-dm__topbar-hunt" data-nav="register">начать охоту →</button>
+                <button type="button" class="landing-dm__topbar-ai" data-nav="cabinet">AI Ассистент</button>
+              </nav>
+              <div class="landing-dm__topbar-balance" aria-hidden="true"></div>
             </div>
           </div>
         </header>
@@ -43,10 +46,12 @@
               <span class="hero-dm__support-line">показывают на 21–36% более высокую производительность.</span>
             </p>
             <p class="hero-dm__source"><strong>Harvard Business Review</strong> · Исследование вовлечённости сотрудников</p>
-            <div class="hero-dm__actions" role="tablist" aria-label="Аудитория">
-              <button type="button" class="vh-btn vh-btn--primary hero-dm__cta hero-dm__audience-btn" id="tabEmployee" role="tab" aria-selected="true">Для сотрудников</button>
-              <button type="button" class="vh-btn vh-btn--outline-primary hero-dm__cta hero-dm__audience-btn" id="tabCompany" role="tab" aria-selected="false">Для компаний</button>
-              <button type="button" class="hero-dm__cta-secondary" data-nav="register">начать охоту →</button>
+            <div class="hero-dm__actions">
+              <div class="hero-dm__audience-group" role="tablist" aria-label="Аудитория">
+                <button type="button" class="vh-btn vh-btn--primary hero-dm__cta hero-dm__audience-btn" data-audience-switch="employee" role="tab" aria-selected="true">Для сотрудников</button>
+                <button type="button" class="vh-btn vh-btn--outline-primary hero-dm__cta hero-dm__audience-btn" data-audience-switch="company" role="tab" aria-selected="false">Для компаний</button>
+              </div>
+              <button type="button" class="hero-dm__cta-hunt" data-nav="register">начать охоту <span class="hero-dm__cta-hunt-arrow" aria-hidden="true">→</span></button>
             </div>
             <div class="hero-dm__trust">
               <span>Бесплатно · ~25 минут</span>
@@ -61,69 +66,574 @@
                 <span class="hero-dm__preview-dot"></span>
                 <span class="hero-dm__preview-dot"></span>
               </div>
-              <div class="hero-dm__preview-body">
-                <div class="preview-card preview-card--accent">
-                  <div class="preview-card__label">Карьерный код</div>
-                  <div class="preview-card__title">Харизматичный авторитет</div>
-                  <div class="preview-card__meta">A3W · лидер по призванию</div>
-                </div>
-                <div class="preview-card">
-                  <div class="preview-card__label">Путь · 60%</div>
-                  <div class="preview-card__title">Фундаментальный тест</div>
-                  <div class="preview-card__meta">Пройден · Ценности открыты</div>
-                </div>
-                <div class="preview-card">
-                  <div class="preview-card__label">Следующий шаг</div>
-                  <div class="preview-card__title">Тест коммуникации</div>
-                  <div class="preview-card__meta">~15 мин · Пройти →</div>
-                </div>
-                <div class="preview-card">
-                  <div class="preview-card__label">Сообщество</div>
-                  <div class="preview-card__title">Среди первых 128</div>
-                  <div class="preview-card__meta">специалистов платформы</div>
-                </div>
+              <div class="hero-dm__preview-app">
+                <aside class="preview-sidebar" aria-label="Навигация кабинета">
+                  <div class="preview-sidebar__brand">
+                    <span class="preview-sidebar__logo">Vibe<span>Hunt</span></span>
+                  </div>
+                  <nav class="preview-sidebar__nav">
+                    <span class="preview-nav">
+                      <svg class="preview-nav__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="2.5" y="2.5" width="6.5" height="6.5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="2.5" width="6.5" height="6.5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="2.5" y="11" width="6.5" height="6.5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="11" width="6.5" height="6.5" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+                      Личный кабинет
+                    </span>
+                    <span class="preview-nav preview-nav--active" aria-current="page">
+                      <svg class="preview-nav__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.5l2.2 4.5 5 .7-3.6 3.5.9 5.1L10 14l-4.5 2.3.9-5.1-3.6-3.5 5-.7L10 2.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                      Карьерный Вайб
+                    </span>
+                    <span class="preview-nav">
+                      <svg class="preview-nav__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="6.5" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M7 6.5V5a3 3 0 0 1 6 0v1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+                      Подходящие вакансии
+                    </span>
+                    <span class="preview-nav">
+                      <svg class="preview-nav__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3.5" y="4" width="13" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 14.5v2M13 14.5v2M6.5 8.5h3M10.5 8.5h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                      AI Коуч
+                    </span>
+                    <span class="preview-nav">
+                      <svg class="preview-nav__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 5.5h12M4 10h12M4 14.5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="3" y="3.5" width="14" height="13" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+                      Подходящие курсы
+                    </span>
+                    <span class="preview-nav">
+                      <svg class="preview-nav__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="4.5" width="14" height="12.5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 8.5h14M7 3v3M13 3v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                      События
+                    </span>
+                  </nav>
+                  <div class="preview-sidebar__user">
+                    <span class="preview-sidebar__avatar" aria-hidden="true">А</span>
+                    <span class="preview-sidebar__user-info">
+                      <span class="preview-sidebar__name">Алия К.</span>
+                      <span class="preview-sidebar__email">aliya@vibe.test</span>
+                    </span>
+                  </div>
+                </aside>
+
+                <main class="preview-main" aria-label="Карьерный Вайб">
+                  <div class="preview-vibe">
+                    <div class="preview-vibe__row preview-vibe__row--top">
+                      <article class="preview-vibe__hero">
+                        <div class="preview-vibe__eyebrow">Карьерный Код · срез №1 · 21.08.2026</div>
+                        <div class="preview-vibe__headline">
+                          <span class="preview-vibe__tag">ВАЙБ</span>
+                          <h3 class="preview-vibe__title">Харизматичного авторитета</h3>
+                        </div>
+                        <div class="preview-vibe__chips">
+                          <span class="preview-vibe__chip">A3W · v1.1.0</span>
+                          <span class="preview-vibe__chip preview-vibe__chip--accent">лидер по призванию</span>
+                        </div>
+                        <div class="preview-vibe__hero-body">
+                          <svg class="preview-vibe__radar" viewBox="0 0 240 240" fill="none" aria-hidden="true">
+                            <polygon points="120,28 212,120 120,212 28,120" stroke="#E4E7EC" stroke-width="1" fill="none"/>
+                            <polygon points="120,51 189,120 120,189 51,120" stroke="#E4E7EC" stroke-width="1" fill="none"/>
+                            <polygon points="120,74 166,120 120,166 74,120" stroke="#E4E7EC" stroke-width="1" fill="none"/>
+                            <polygon points="120,97 143,120 120,143 97,120" stroke="#E4E7EC" stroke-width="1" fill="none"/>
+                            <line x1="120" y1="28" x2="120" y2="212" stroke="#E4E7EC" stroke-width="1"/>
+                            <line x1="28" y1="120" x2="212" y2="120" stroke="#E4E7EC" stroke-width="1"/>
+                            <polygon points="120,28 212,120 120,175 65,120" fill="rgba(242,101,34,0.12)" stroke="#F26522" stroke-width="2.4" stroke-linejoin="round"/>
+                            <circle cx="120" cy="28" r="4" fill="#F26522"/>
+                            <circle cx="212" cy="120" r="4" fill="#F26522"/>
+                            <circle cx="120" cy="175" r="4" fill="#F26522"/>
+                            <circle cx="65" cy="120" r="4" fill="#F26522"/>
+                            <text x="120" y="18" text-anchor="middle" fill="#667085" font-family="JetBrains Mono, monospace" font-size="12" font-weight="600">A</text>
+                            <text x="226" y="124" text-anchor="middle" fill="#667085" font-family="JetBrains Mono, monospace" font-size="12" font-weight="600">B</text>
+                            <text x="120" y="230" text-anchor="middle" fill="#667085" font-family="JetBrains Mono, monospace" font-size="12" font-weight="600">C</text>
+                            <text x="52" y="124" text-anchor="middle" fill="#667085" font-family="JetBrains Mono, monospace" font-size="12" font-weight="600">D</text>
+                          </svg>
+                          <p class="preview-vibe__desc">Харизматичный авторитет, увлекающий людей личным обаянием и силой убеждения, лидер по призванию.</p>
+                        </div>
+                      </article>
+
+                      <article class="preview-vibe__card preview-vibe__card--superpower">
+                        <div class="preview-vibe__card-label preview-vibe__card-label--orange">Суперсила</div>
+                        <h4 class="preview-vibe__card-title">Магнетическое лидерство</h4>
+                        <p class="preview-vibe__card-text">Вести за собой силой личности и слова.</p>
+                        <div class="preview-vibe__tags">
+                          <span class="preview-vibe__tag-pill">Харизма</span>
+                          <span class="preview-vibe__tag-pill">Влияние</span>
+                        </div>
+                      </article>
+                    </div>
+
+                    <div class="preview-vibe__row">
+                      <article class="preview-vibe__card preview-vibe__card--traits">
+                        <div class="preview-vibe__card-label preview-vibe__card-label--orange">Драйверы</div>
+                        <div class="preview-vibe__accordion">
+                          <div class="preview-vibe__trait preview-vibe__trait--open">
+                            <div class="preview-vibe__trait-head">
+                              <span class="preview-vibe__trait-pole">A</span>
+                              <span class="preview-vibe__trait-name">Ты стремишься к автономности</span>
+                              <span class="preview-vibe__trait-badge">максимально</span>
+                              <svg class="preview-vibe__trait-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                            <div class="preview-vibe__trait-body">
+                              <div class="preview-vibe__trait-bars" aria-hidden="true">
+                                <span class="preview-vibe__trait-bar preview-vibe__trait-bar--fill"></span>
+                                <span class="preview-vibe__trait-bar preview-vibe__trait-bar--fill"></span>
+                                <span class="preview-vibe__trait-bar preview-vibe__trait-bar--fill"></span>
+                                <span class="preview-vibe__trait-bar preview-vibe__trait-bar--fill"></span>
+                                <span class="preview-vibe__trait-bar preview-vibe__trait-bar--fill"></span>
+                              </div>
+                              <div class="preview-vibe__trait-interpret">
+                                <span class="preview-vibe__trait-interpret-label">Интерпретация</span>
+                                <p>Максимальная выраженность на полюсе <strong>автономности</strong>: тебе комфортнее самостоятельно принимать решения, брать инициативу и нести ответственность за результат. В команде ты раскрываешься, когда роли ясны, а руководитель доверяет тактике без микроконтроля.</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="preview-vibe__trait preview-vibe__trait--closed">
+                            <div class="preview-vibe__trait-head">
+                              <span class="preview-vibe__trait-pole">B</span>
+                              <span class="preview-vibe__trait-name">Для тебя важнее общение, чем уединение</span>
+                              <span class="preview-vibe__trait-badge preview-vibe__trait-badge--muted">максимально</span>
+                              <svg class="preview-vibe__trait-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                          </div>
+                          <div class="preview-vibe__trait preview-vibe__trait--closed">
+                            <div class="preview-vibe__trait-head">
+                              <span class="preview-vibe__trait-pole">C</span>
+                              <span class="preview-vibe__trait-name">Ты стремишься к балансу между предсказуемостью и динамикой</span>
+                              <span class="preview-vibe__trait-badge preview-vibe__trait-badge--muted">заметно</span>
+                              <svg class="preview-vibe__trait-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                          </div>
+                          <div class="preview-vibe__trait preview-vibe__trait--closed">
+                            <div class="preview-vibe__trait-head">
+                              <span class="preview-vibe__trait-pole">D</span>
+                              <span class="preview-vibe__trait-name">Тебе чуть ближе системность, чем импровизация</span>
+                              <span class="preview-vibe__trait-badge preview-vibe__trait-badge--muted">заметно</span>
+                              <svg class="preview-vibe__trait-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                          </div>
+                        </div>
+                      </article>
+
+                      <article class="preview-vibe__card preview-vibe__card--values">
+                        <header class="preview-vibe__values-header">
+                          <div class="preview-vibe__card-label preview-vibe__card-label--violet">Профиль ценностей</div>
+                        </header>
+
+                        <div class="preview-vibe__values-body">
+                          <figure class="preview-vibe__values-chart">
+                            <svg class="preview-vibe__values-radar" viewBox="-12 0 234 190" fill="none" aria-hidden="true">
+                              <polygon points="105,15 181,70 152,160 58,160 29,70" stroke="#E4E7EC" stroke-width="1" fill="none"/>
+                              <polygon points="105,35 162,77 140,144 70,144 48,77" stroke="#E4E7EC" stroke-width="1" fill="none"/>
+                              <polygon points="105,55 143,83 128,128 82,128 67,83" stroke="#E4E7EC" stroke-width="1" fill="none"/>
+                              <polygon points="105,75 124,89 117,111 93,111 86,89" stroke="#E4E7EC" stroke-width="1" fill="none"/>
+                              <polygon points="105,65 120,90 125,122 91,114 44,75" fill="rgba(107,78,255,0.12)" stroke="#6B4EFF" stroke-width="2.2" stroke-linejoin="round"/>
+                              <circle cx="44" cy="75" r="4" fill="#6B4EFF"/>
+                              <text x="105" y="8" text-anchor="middle" fill="#98A2B3" font-family="Inter, sans-serif" font-size="10">Определённость</text>
+                              <text x="196" y="66" text-anchor="middle" fill="#98A2B3" font-family="Inter, sans-serif" font-size="10">Статус</text>
+                              <text x="163" y="176" text-anchor="middle" fill="#98A2B3" font-family="Inter, sans-serif" font-size="10">Амбиции</text>
+                              <text x="48" y="176" text-anchor="middle" fill="#98A2B3" font-family="Inter, sans-serif" font-size="10">Теплота</text>
+                              <text x="16" y="66" text-anchor="middle" fill="#6B4EFF" font-family="Inter, sans-serif" font-size="10" font-weight="700">Смыслы</text>
+                            </svg>
+                            <figcaption class="visually-hidden">Рadar профиля ценностей, главный акцент — Смыслы</figcaption>
+                          </figure>
+
+                          <ul class="preview-vibe__values-list">
+                            <li class="preview-vibe__value-row preview-vibe__value-row--lead">
+                              <span class="preview-vibe__value-label">Смыслы</span>
+                              <span class="preview-vibe__value-track" aria-hidden="true">
+                                <span class="preview-vibe__value-fill preview-vibe__value-fill--lead preview-vibe__value-fill--80"></span>
+                              </span>
+                            </li>
+                            <li class="preview-vibe__value-row">
+                              <span class="preview-vibe__value-label">Определённость</span>
+                              <span class="preview-vibe__value-track" aria-hidden="true">
+                                <span class="preview-vibe__value-fill preview-vibe__value-fill--40"></span>
+                              </span>
+                            </li>
+                            <li class="preview-vibe__value-row">
+                              <span class="preview-vibe__value-label">Амбиции</span>
+                              <span class="preview-vibe__value-track" aria-hidden="true">
+                                <span class="preview-vibe__value-fill preview-vibe__value-fill--40"></span>
+                              </span>
+                            </li>
+                            <li class="preview-vibe__value-row">
+                              <span class="preview-vibe__value-label">Теплота</span>
+                              <span class="preview-vibe__value-track" aria-hidden="true">
+                                <span class="preview-vibe__value-fill preview-vibe__value-fill--30"></span>
+                              </span>
+                            </li>
+                            <li class="preview-vibe__value-row">
+                              <span class="preview-vibe__value-label">Статус</span>
+                              <span class="preview-vibe__value-track" aria-hidden="true">
+                                <span class="preview-vibe__value-fill preview-vibe__value-fill--20"></span>
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <footer class="preview-vibe__values-foot">
+                          <div class="preview-vibe__insight preview-vibe__insight--values">
+                            <svg class="preview-vibe__insight-icon" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                              <path d="M7 1.5l1.6 3.6 3.9.4-2.9 2.6.8 3.9L7 10l-3.4 2 .8-3.9L1.5 5.5l3.9-.4L7 1.5z" stroke="#6B4EFF" stroke-width="1.3" stroke-linejoin="round"/>
+                            </svg>
+                            <p>Главный драйвер — <strong>Смыслы</strong>: тебе важна польза и значимость дела</p>
+                          </div>
+                        </footer>
+                      </article>
+                    </div>
+
+                    <div class="preview-vibe__tabs" aria-hidden="true">
+                      <span class="preview-vibe__tab preview-vibe__tab--active">Драйверы</span>
+                      <span class="preview-vibe__tab">Адаптивность</span>
+                      <span class="preview-vibe__tab preview-vibe__tab--locked">Коммуникация</span>
+                      <span class="preview-vibe__tab preview-vibe__tab--locked">Мышление</span>
+                    </div>
+                  </div>
+                </main>
               </div>
             </div>
           </div>
         </section>
 
-        <section class="features-dm" id="features">
+        <section class="features-dm features-dm--sketch" id="features" data-audience-view="employee">
           <div class="features-dm__header">
             <div class="features-dm__eyebrow">Методология</div>
             <h2 class="features-dm__title">VibeHunt берёт на себя сложную работу</h2>
             <p class="features-dm__desc">Платформа анализирует более 50 факторов, чтобы составить уникальный профессиональный профиль и помочь командам расти осознанно.</p>
           </div>
           <div class="features-dm__grid">
-            <article class="feature-dm">
-              <div class="feature-dm__icon">◎</div>
-              <h3>Глубокая аналитика</h3>
-              <p>Осознанный карьерный путь на основе данных, а не интуиции.</p>
+            <article class="feature-dm feature-dm--sketch" data-audience="employee" data-character="altruist" tabindex="0">
+              <div class="feature-dm__canvas">
+                <h3 class="feature-dm__title">Профиль</h3>
+                <p class="feature-dm__subtitle">открытый диалог с компанией</p>
+                <div class="feature-dm__scene" aria-hidden="true">
+                  <svg class="feature-dm__character" viewBox="0 0 200 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 24c18 10 30 24 36 40" stroke="#667085" stroke-width="2" stroke-dasharray="5 4" stroke-linecap="round"/>
+                    <circle cx="34" cy="42" r="7" stroke="#667085" stroke-width="2"/>
+                    <circle cx="52" cy="34" r="7" stroke="#667085" stroke-width="2"/>
+                    <circle cx="70" cy="42" r="7" stroke="#667085" stroke-width="2"/>
+                    <path d="M34 52c6 6 14 8 22 4M52 44c0 10 8 16 18 16" stroke="#667085" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M160 46c0-8 6-14 14-14s14 6 14 14-14 24-14 24-14-12-14-24z" stroke="#667085" stroke-width="2"/>
+                    <path d="M58 62c-18 2-28 18-26 38 2 24 22 42 46 42s44-18 46-42c2-20-8-36-26-38-8-1-14 4-20 4s-12-5-20-4z" fill="#e85d8a" stroke="#fff" stroke-width="3"/>
+                    <path d="M78 70c2 2 6 2 8 0" stroke="#1d2939" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M94 70c2 2 6 2 8 0" stroke="#1d2939" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M84 82c4 3 8 3 12 0" stroke="#1d2939" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M62 108c-8 6-8 18-2 26" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M118 108c8 6 8 18 2 26" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M74 108c0-6 8-10 16-10s16 4 16 10v8c0 12-16 24-16 24s-16-12-16-24v-8z" stroke="#fff" stroke-width="2.5" fill="none"/>
+                    <path d="M172 178c0-5 4-9 9-9s9 4 9 9-9 16-9 16-9-11-9-16z" stroke="#667085" stroke-width="2"/>
+                  </svg>
+                </div>
+                <div class="feature-dm__details">
+                  <ul class="feature-dm__list">
+                    <li>какой функционал наиболее приоритетный</li>
+                    <li>что даёт максимальную мотивацию</li>
+                    <li>как обеспечить лучшую адаптацию</li>
+                  </ul>
+                  <p class="feature-dm__tagline">профиль · мотивация · адаптация</p>
+                </div>
+              </div>
             </article>
-            <article class="feature-dm">
-              <div class="feature-dm__icon">→</div>
-              <h3>Точные рекомендации</h3>
-              <p>Риски выгорания и конфликтов — с инструментами профилактики.</p>
+            <article class="feature-dm feature-dm--sketch" data-audience="employee" data-character="operator" tabindex="0">
+              <div class="feature-dm__canvas">
+                <h3 class="feature-dm__title">Автоматизация</h3>
+                <p class="feature-dm__subtitle">подготовка и согласования</p>
+                <div class="feature-dm__scene" aria-hidden="true">
+                  <svg class="feature-dm__character" viewBox="0 0 200 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="168" cy="42" r="12" stroke="#667085" stroke-width="2"/>
+                    <path d="M168 34v6l4 4" stroke="#667085" stroke-width="2" stroke-linecap="round"/>
+                    <rect x="24" y="36" width="28" height="34" rx="3" stroke="#667085" stroke-width="2"/>
+                    <path d="M30 46h16M30 54h12M30 62h14" stroke="#667085" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M58 62c-18 2-28 18-26 38 2 24 22 42 46 42s44-18 46-42c2-20-8-36-26-38-8-1-14 4-20 4s-12-5-20-4z" fill="#2ebfb0" stroke="#fff" stroke-width="3"/>
+                    <circle cx="82" cy="72" r="3" fill="#1d2939"/>
+                    <circle cx="98" cy="72" r="3" fill="#1d2939"/>
+                    <path d="M86 82c4 3 8 3 12 0" stroke="#1d2939" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M112 98h34v44H112z" stroke="#667085" stroke-width="2"/>
+                    <path d="M118 108h8M118 118h8M118 128h8" stroke="#667085" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M132 108l4 4-4 4M132 118l4 4-4 4M132 128l4 4-4 4" stroke="#667085" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M146 118l14-10" stroke="#667085" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="feature-dm__details">
+                  <ul class="feature-dm__list">
+                    <li>автоматизация назначения встреч</li>
+                    <li>подготовка плана интервью для конкретной беседы</li>
+                    <li>запись и транскрибация звонков, чтобы фиксировать ключевые моменты</li>
+                  </ul>
+                  <p class="feature-dm__tagline">встречи · интервью · фиксация</p>
+                </div>
+              </div>
             </article>
-            <article class="feature-dm">
-              <div class="feature-dm__icon">◆</div>
-              <h3>Улучшение взаимодействия</h3>
-              <p>Сильные стороны и зоны развития каждого участника команды.</p>
+            <article class="feature-dm feature-dm--sketch" data-audience="employee" data-character="entrepreneur" tabindex="0">
+              <div class="feature-dm__canvas">
+                <h3 class="feature-dm__title">Поиск команды</h3>
+                <p class="feature-dm__subtitle">подходящая среда для роста</p>
+                <div class="feature-dm__scene" aria-hidden="true">
+                  <svg class="feature-dm__character" viewBox="0 0 200 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M128 156l18-34 18 34H128z" stroke="#667085" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M146 148v-8" stroke="#667085" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M140 156h12" stroke="#667085" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M24 52l8-8 8 8" stroke="#667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M32 44v12" stroke="#667085" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M58 62c-18 2-28 18-26 38 2 24 22 42 46 42s44-18 46-42c2-20-8-36-26-38-8-1-14 4-20 4s-12-5-20-4z" fill="#f5a623" stroke="#fff" stroke-width="3"/>
+                    <circle cx="82" cy="72" r="3" fill="#1d2939"/>
+                    <circle cx="98" cy="72" r="3" fill="#1d2939"/>
+                    <path d="M86 82c4 3 8 3 12 0" stroke="#1d2939" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M146 92l-2-28" stroke="#667085" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M144 64c0-8 6-12 12-12" stroke="#667085" stroke-width="2" stroke-linecap="round"/>
+                    <rect x="152" y="48" width="14" height="10" fill="#f5a623" stroke="#667085" stroke-width="2"/>
+                    <path d="M70 132c10-8 24-10 38-4" stroke="#667085" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="feature-dm__details">
+                  <ul class="feature-dm__list">
+                    <li>прямая рассылка по партнёрской сети</li>
+                    <li>кадровый резерв при появлении актуальных вакансий</li>
+                    <li>рекомендации и план развития под потребности рынка</li>
+                  </ul>
+                  <p class="feature-dm__tagline">сеть · резерв · развитие</p>
+                </div>
+              </div>
             </article>
-            <article class="feature-dm">
-              <div class="feature-dm__icon violet">▣</div>
-              <h3>Экономия на скрининге</h3>
-              <p>Снижайте затраты на подбор до 70% через анализ ценностей.</p>
+            <article class="feature-dm feature-dm--sketch" data-audience="company" data-character="guardian" tabindex="0">
+              <div class="feature-dm__canvas">
+                <h3 class="feature-dm__title">Скрининг</h3>
+                <p class="feature-dm__subtitle">экономия на отборе</p>
+                <div class="feature-dm__scene" aria-hidden="true">
+                  <svg class="feature-dm__character" viewBox="0 0 200 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="26" y="38" width="18" height="22" rx="3" stroke="#667085" stroke-width="2"/>
+                    <path d="M35 48v6" stroke="#667085" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M58 62c-18 2-28 18-26 38 2 24 22 42 46 42s44-18 46-42c2-20-8-36-26-38-8-1-14 4-20 4s-12-5-20-4z" fill="#9b6fd4" stroke="#fff" stroke-width="3"/>
+                    <circle cx="82" cy="72" r="3" fill="#1d2939"/>
+                    <circle cx="98" cy="72" r="3" fill="#1d2939"/>
+                    <path d="M86 82c4 3 8 3 12 0" stroke="#1d2939" stroke-width="2" stroke-linecap="round"/>
+                    <ellipse cx="90" cy="74" rx="22" ry="10" stroke="#fff" stroke-width="2.5"/>
+                    <path d="M68 74h-8M112 74h8" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M118 96c6 0 12 6 12 14v28c0 8-6 14-12 14H98c-6 0-12-6-12-14v-28c0-8 6-14 12-14h20z" fill="#8a5fc4" stroke="#667085" stroke-width="2"/>
+                    <path d="M104 118l6 6 12-12" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="feature-dm__details">
+                  <p class="feature-dm__quote">Снижайте затраты на подбор до 70% через анализ ценностей.</p>
+                  <p class="feature-dm__tagline">анализ · экономия · результат</p>
+                </div>
+              </div>
             </article>
-            <article class="feature-dm">
-              <div class="feature-dm__icon violet">✓</div>
-              <h3>Удержание сотрудников</h3>
-              <p>Сокращайте текучку на 40% благодаря совпадению ценностей.</p>
+            <article class="feature-dm feature-dm--sketch" data-audience="company" data-character="altruist" tabindex="0">
+              <div class="feature-dm__canvas">
+                <h3 class="feature-dm__title">Удержание</h3>
+                <p class="feature-dm__subtitle">совпадение ценностей</p>
+                <div class="feature-dm__scene" aria-hidden="true">
+                  <svg class="feature-dm__character" viewBox="0 0 200 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="34" cy="42" r="7" stroke="#667085" stroke-width="2"/>
+                    <circle cx="52" cy="34" r="7" stroke="#667085" stroke-width="2"/>
+                    <circle cx="70" cy="42" r="7" stroke="#667085" stroke-width="2"/>
+                    <path d="M34 52c6 6 14 8 22 4M52 44c0 10 8 16 18 16" stroke="#667085" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M58 62c-18 2-28 18-26 38 2 24 22 42 46 42s44-18 46-42c2-20-8-36-26-38-8-1-14 4-20 4s-12-5-20-4z" fill="#e85d8a" stroke="#fff" stroke-width="3"/>
+                    <circle cx="82" cy="72" r="3" fill="#1d2939"/>
+                    <circle cx="98" cy="72" r="3" fill="#1d2939"/>
+                    <path d="M86 82c4 3 8 3 12 0" stroke="#1d2939" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M74 108c0-6 8-10 16-10s16 4 16 10v8c0 12-16 24-16 24s-16-12-16-24v-8z" stroke="#667085" stroke-width="2" fill="none"/>
+                    <path d="M160 46c0-8 6-14 14-14s14 6 14 14-14 24-14 24-14-12-14-24z" stroke="#667085" stroke-width="2"/>
+                  </svg>
+                </div>
+                <div class="feature-dm__details">
+                  <p class="feature-dm__quote">Сокращайте текучку на 40% благодаря совпадению ценностей.</p>
+                  <p class="feature-dm__tagline">ценности · команда · стабильность</p>
+                </div>
+              </div>
             </article>
-            <article class="feature-dm">
-              <div class="feature-dm__icon violet">↗</div>
-              <h3>Рост эффективности</h3>
-              <p>Увеличивайте производительность через распределение ролей.</p>
+            <article class="feature-dm feature-dm--sketch" data-audience="company" data-character="persuader" tabindex="0">
+              <div class="feature-dm__canvas">
+                <h3 class="feature-dm__title">Эффективность</h3>
+                <p class="feature-dm__subtitle">роли и распределение</p>
+                <div class="feature-dm__scene" aria-hidden="true">
+                  <svg class="feature-dm__character" viewBox="0 0 200 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 48l8-8 8 8" stroke="#667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M32 40v10" stroke="#667085" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M58 62c-18 2-28 18-26 38 2 24 22 42 46 42s44-18 46-42c2-20-8-36-26-38-8-1-14 4-20 4s-12-5-20-4z" fill="#7bc96f" stroke="#fff" stroke-width="3"/>
+                    <circle cx="82" cy="72" r="3" fill="#1d2939"/>
+                    <circle cx="98" cy="72" r="3" fill="#1d2939"/>
+                    <path d="M86 82c4 3 8 3 12 0" stroke="#1d2939" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M118 52c0-10 8-16 18-16h8c10 0 18 6 18 16v6H118v-6z" stroke="#667085" stroke-width="2"/>
+                    <path d="M152 58c0-6 4-10 10-10" stroke="#667085" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M128 72c6 4 12 4 18 0" stroke="#667085" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M164 96l10 8-10 8" stroke="#667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="feature-dm__details">
+                  <p class="feature-dm__quote">Увеличивайте производительность через распределение ролей.</p>
+                  <p class="feature-dm__tagline">роли · рост · результат</p>
+                </div>
+              </div>
             </article>
+          </div>
+        </section>
+
+        <section class="how-dm" id="how">
+          <div class="how-dm__inner">
+            <h2 class="how-dm__title">Как работает сервис</h2>
+            <div class="how-dm__layout">
+              <div class="how-dm__nav">
+                <div class="how-dm__rail" aria-hidden="true">
+                  <span class="how-dm__line"></span>
+                  <span class="how-dm__indicator"></span>
+                </div>
+                <div class="how-dm__steps" role="tablist" aria-label="Как работает сервис">
+                  <article class="how-dm__step how-dm__step--active">
+                    <button type="button" class="how-dm__tab" role="tab" aria-selected="true" data-how-step="0">формируйте свой карьерный профиль</button>
+                    <div class="how-dm__tab-panel" role="tabpanel">
+                      <p>Проходите фундаментальное тестирование, формируйте описание ключевых навыков, кейсов и сертификатов, а также карьерный трек и цели.</p>
+                    </div>
+                  </article>
+                  <article class="how-dm__step">
+                    <button type="button" class="how-dm__tab" role="tab" aria-selected="false" data-how-step="1">подтверждайте заинтересовавшие позиции</button>
+                    <div class="how-dm__tab-panel" role="tabpanel" hidden>
+                      <p>Отмечайте вакансии, которые откликаются — платформа учитывает совпадение по ценностям и сохраняет интересные роли в резерв.</p>
+                    </div>
+                  </article>
+                  <article class="how-dm__step">
+                    <button type="button" class="how-dm__tab" role="tab" aria-selected="false" data-how-step="2">подключайте автоматизацию встреч</button>
+                    <div class="how-dm__tab-panel" role="tabpanel" hidden>
+                      <p>Календарь, напоминания и транскрибация подключаются в один клик — встречи назначаются без лишней переписки.</p>
+                    </div>
+                  </article>
+                  <article class="how-dm__step">
+                    <button type="button" class="how-dm__tab" role="tab" aria-selected="false" data-how-step="3">проходите дополнительные тестирования</button>
+                    <div class="how-dm__tab-panel" role="tabpanel" hidden>
+                      <p>Каждый модуль уточняет профиль и помогает точнее подбирать команды под ваши сильные стороны.</p>
+                    </div>
+                  </article>
+                  <article class="how-dm__step">
+                    <button type="button" class="how-dm__tab" role="tab" aria-selected="false" data-how-step="4">создавайте свой личный план развития</button>
+                    <div class="how-dm__tab-panel" role="tabpanel" hidden>
+                      <p>Сформируйте персональный трек роста на основе профиля, целей и актуальных потребностей рынка.</p>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="how-dm__preview">
+                <div class="how-dm__panel how-dm__panel--active" data-how-panel="0" role="tabpanel">
+                  <div class="how-dm__shot how-dm__shot--portfolio">
+                    <div class="how-dm__shot-frame">
+                      <div class="how-shot">
+                        <header class="how-shot__topbar">
+                          <span class="how-shot__logo">Vibe<span>Hunt</span></span>
+                          <span class="how-shot__page">Портфолио</span>
+                        </header>
+                        <div class="how-shot__tabs" aria-hidden="true">
+                          <span class="how-shot__tab how-shot__tab--active">Навыки</span>
+                          <span class="how-shot__tab">Кейсы</span>
+                          <span class="how-shot__tab">Сертификаты</span>
+                          <span class="how-shot__tab">Карьерный трек</span>
+                        </div>
+                        <div class="how-shot__body">
+                          <article class="how-shot__card">
+                            <div class="how-shot__card-label">Ключевые навыки</div>
+                            <div class="how-shot__tags">
+                              <span>Стратегия</span><span>Лидерство</span><span>Коммуникация</span>
+                            </div>
+                          </article>
+                          <article class="how-shot__card">
+                            <div class="how-shot__card-label">Кейс · Product Launch</div>
+                            <p>Запуск B2B-продукта: рост конверсии на 34% за 6 месяцев.</p>
+                          </article>
+                          <article class="how-shot__card how-shot__card--muted">
+                            <div class="how-shot__card-label">Сертификат</div>
+                            <p>Product Management · Coursera · 2024</p>
+                          </article>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="how-dm__panel" data-how-panel="1" role="tabpanel" hidden>
+                  <div class="how-dm__shot how-dm__shot--vc">
+                    <div class="how-dm__shot-frame">
+                      <div class="how-shot">
+                        <header class="how-shot__topbar">
+                          <span class="how-shot__logo">Vibe<span>Hunt</span></span>
+                          <span class="how-shot__page">Подходящие вакансии</span>
+                        </header>
+                        <div class="how-shot__body">
+                          <article class="how-shot__vacancy how-shot__vacancy--active">
+                            <div>
+                              <div class="how-shot__vacancy-title">Product Lead · FinTech</div>
+                              <div class="how-shot__vacancy-meta">Совпадение по ценностям · 87%</div>
+                            </div>
+                            <span class="how-shot__vacancy-action">Подтвердить</span>
+                          </article>
+                          <article class="how-shot__vacancy">
+                            <div>
+                              <div class="how-shot__vacancy-title">Head of Growth · EdTech</div>
+                              <div class="how-shot__vacancy-meta">Совпадение по ценностям · 81%</div>
+                            </div>
+                            <span class="how-shot__vacancy-action how-shot__vacancy-action--muted">В резерве</span>
+                          </article>
+                          <article class="how-shot__vacancy">
+                            <div>
+                              <div class="how-shot__vacancy-title">Strategy Manager · HealthTech</div>
+                              <div class="how-shot__vacancy-meta">Совпадение по ценностям · 76%</div>
+                            </div>
+                            <span class="how-shot__vacancy-action how-shot__vacancy-action--muted">Смотреть</span>
+                          </article>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="how-dm__panel" data-how-panel="2" role="tabpanel" hidden>
+                  <article class="how-dm__mock how-dm__mock--meetings">
+                    <div class="how-dm__mock-label">Автоматизация встреч</div>
+                    <div class="how-dm__mock-slot"><span>Вт, 14:00</span><strong>Intro с HR · Zoom</strong></div>
+                    <div class="how-dm__mock-slot how-dm__mock-slot--active"><span>Ср, 11:30</span><strong>Техинтервью · Google Meet</strong></div>
+                    <div class="how-dm__mock-slot"><span>Чт, 16:00</span><strong>Финальная встреча · офис</strong></div>
+                    <p class="how-dm__mock-footnote">Календарь, напоминания и транскрибация подключаются в один клик.</p>
+                  </article>
+                </div>
+                <div class="how-dm__panel" data-how-panel="3" role="tabpanel" hidden>
+                  <div class="how-dm__shot how-dm__shot--vibe">
+                    <div class="how-dm__shot-frame">
+                      <div class="how-shot how-shot--vibe">
+                        <header class="how-shot__topbar">
+                          <span class="how-shot__logo">Vibe<span>Hunt</span></span>
+                          <span class="how-shot__page">Карьерный Вайб</span>
+                        </header>
+                        <div class="how-shot__vibe-grid">
+                          <article class="how-shot__vibe-hero">
+                            <div class="how-shot__vibe-eyebrow">Карьерный Код · срез №1</div>
+                            <div class="how-shot__vibe-headline">
+                              <span class="how-shot__vibe-tag">ВАЙБ</span>
+                              <h3>Харизматичного авторитета</h3>
+                            </div>
+                            <div class="how-shot__vibe-chips">
+                              <span>A3W · v1.1.0</span>
+                              <span class="how-shot__vibe-chip-accent">лидер по призванию</span>
+                            </div>
+                            <div class="how-shot__vibe-body">
+                              <svg class="how-shot__vibe-radar" viewBox="0 0 240 240" fill="none" aria-hidden="true">
+                                <polygon points="120,28 212,120 120,212 28,120" stroke="#E4E7EC" stroke-width="1" fill="none"/>
+                                <polygon points="120,51 189,120 120,189 51,120" stroke="#E4E7EC" stroke-width="1" fill="none"/>
+                                <polygon points="120,74 166,120 120,166 74,120" stroke="#E4E7EC" stroke-width="1" fill="none"/>
+                                <line x1="120" y1="28" x2="120" y2="212" stroke="#E4E7EC" stroke-width="1"/>
+                                <line x1="28" y1="120" x2="212" y2="120" stroke="#E4E7EC" stroke-width="1"/>
+                                <polygon points="120,28 212,120 120,175 65,120" fill="rgba(242,101,34,0.12)" stroke="#F26522" stroke-width="2.4" stroke-linejoin="round"/>
+                              </svg>
+                              <p>Харизматичный авторитет, увлекающий людей личным обаянием и силой убеждения.</p>
+                            </div>
+                          </article>
+                          <article class="how-shot__vibe-side">
+                            <div class="how-shot__card-label">Суперсила</div>
+                            <h4>Магнетическое лидерство</h4>
+                            <p>Вести за собой силой личности и слова.</p>
+                          </article>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="how-dm__panel" data-how-panel="4" role="tabpanel" hidden>
+                  <article class="how-dm__mock how-dm__mock--plan">
+                    <div class="how-dm__mock-label">План развития</div>
+                    <div class="how-dm__mock-plan">
+                      <div class="how-dm__mock-plan-item"><span>1</span><p>Усилить навыки стратегического влияния</p></div>
+                      <div class="how-dm__mock-plan-item"><span>2</span><p>Прокачать коммуникацию в кросс-функциональных командах</p></div>
+                      <div class="how-dm__mock-plan-item"><span>3</span><p>Собрать портфолио кейсов для целевых ролей</p></div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -199,6 +709,73 @@
             <p class="footer-dm__copy">© VibeHunt, 2025</p>
           </div>
         </footer>
+      </section>
+
+      <!-- CJM — путь кандидата (Develop.Me-style) -->
+      <section class="screen landing-dm" data-screen="cjm">
+        <header class="vh-topbar landing-dm__topbar">
+          <div class="vh-topbar-inner landing-dm__topbar-inner">
+            <div class="landing-dm__topbar-row landing-dm__topbar-row--cjm">
+              <div class="landing-dm__topbar-brand">
+                <button type="button" class="vh-logo" data-nav="landing">Vibe<span>Hunt</span></button>
+              </div>
+              <button type="button" class="landing-dm__topbar-back" data-nav="landing">← На главную</button>
+            </div>
+          </div>
+        </header>
+
+        <div class="cjm-dm-page">
+          <div class="features-dm__header">
+            <div class="features-dm__eyebrow">Путь кандидата</div>
+            <h2 class="features-dm__title">VibeHunt берёт на себя сложную работу</h2>
+            <p class="features-dm__desc">Три этапа — от профиля до выхода на подходящую команду. Бесплатно, ~25 минут на старт.</p>
+          </div>
+
+          <div class="cjm-dm">
+            <div class="cjm-dm__inner">
+              <div class="cjm-dm__rail" aria-hidden="true">
+                <span class="cjm-dm__line"></span>
+                <span class="cjm-dm__indicator"></span>
+              </div>
+              <div class="cjm-dm__steps" role="tablist" aria-label="Этапы пути кандидата">
+                <article class="cjm-dm__step cjm-dm__step--active">
+                  <button type="button" class="cjm-dm__step-trigger" role="tab" aria-selected="true">Формируем профиль для открытого диалога с компанией</button>
+                  <div class="cjm-dm__step-panel" role="tabpanel">
+                    <ul class="cjm-dm__list">
+                      <li>какой функционал наиболее приоритетный</li>
+                      <li>что даёт максимальную мотивацию</li>
+                      <li>как обеспечить лучшую адаптацию</li>
+                    </ul>
+                  </div>
+                </article>
+                <article class="cjm-dm__step">
+                  <button type="button" class="cjm-dm__step-trigger" role="tab" aria-selected="false">Автоматизируем процессы подготовки и согласований</button>
+                  <div class="cjm-dm__step-panel" role="tabpanel" hidden>
+                    <ul class="cjm-dm__list">
+                      <li>автоматизация назначения встреч</li>
+                      <li>подготовка плана интервью для конкретной беседы</li>
+                      <li>запись и транскрибация звонков, чтобы фиксировать ключевые моменты</li>
+                    </ul>
+                  </div>
+                </article>
+                <article class="cjm-dm__step">
+                  <button type="button" class="cjm-dm__step-trigger" role="tab" aria-selected="false">Ускоряем поиск подходящей команды</button>
+                  <div class="cjm-dm__step-panel" role="tabpanel" hidden>
+                    <ul class="cjm-dm__list">
+                      <li>прямая рассылка по партнёрской сети</li>
+                      <li>кадровый резерв при появлении актуальных вакансий</li>
+                      <li>рекомендации и план развития под потребности рынка</li>
+                    </ul>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <div class="cjm-dm-page__cta">
+            <button type="button" class="vh-btn vh-btn--primary hero-dm__cta" data-nav="register">Начать тест →</button>
+          </div>
+        </div>
       </section>
 
       <!-- Register / onboarding -->

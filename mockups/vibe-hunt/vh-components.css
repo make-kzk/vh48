@@ -127,6 +127,14 @@ a:hover { color: var(--vh-color-primary); }
 
 .vh-btn--outline-primary:hover { background: var(--vh-color-primary-l); }
 
+.vh-btn--outline-secondary {
+  background: var(--vh-bg-surface);
+  color: var(--vh-color-secondary);
+  border-color: var(--vh-color-secondary);
+}
+
+.vh-btn--outline-secondary:hover { background: var(--vh-color-secondary-l); }
+
 .vh-btn--secondary {
   background: var(--vh-color-secondary);
   color: #fff;
