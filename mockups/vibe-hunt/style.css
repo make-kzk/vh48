@@ -24,9 +24,13 @@
   line-height: 1.2; letter-spacing: -0.03em; color: var(--vh-color-ink);
   max-width: 720px; margin: 0 auto 28px;
 }
+.hero-title-line,
+.hero-subtitle-line {
+  display: block;
+}
 .hero-title em { font-style: normal; color: var(--vh-color-primary); }
 .hero-lead {
-  max-width: 560px;
+  max-width: 620px;
   margin: 0 auto 40px;
   display: flex;
   flex-direction: column;
@@ -34,7 +38,10 @@
 }
 .hero-subtitle {
   font-size: clamp(1rem, 2vw, 1.125rem); color: var(--vh-color-muted);
-  margin: 0; line-height: var(--vh-lh-relaxed);
+  margin: 0; line-height: 1.55;
+}
+.hero-subtitle-line + .hero-subtitle-line {
+  margin-top: 4px;
 }
 .hero-source { font-size: var(--vh-text-xs); color: var(--vh-gray-400); margin: 0; }
 .hero-source strong { color: var(--vh-color-slate); }
