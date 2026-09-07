@@ -9,10 +9,12 @@ PORT="${1:-8080}"
 
 cd "$ROOT"
 
-if ! python3 -c "import socket; s=socket.socket(); s.bind(('127.0.0.1', $PORT)); s.close()" 2>/dev/null; then
+echo "Starting vh48 on port $PORT..."
+
+if lsof -ti "tcp:$PORT" >/dev/null 2>&1; then
   echo "Port $PORT is already in use." >&2
   echo "Stop the old server: Ctrl+C in that terminal, or run:" >&2
-  echo "  lsof -ti :$PORT | xargs kill" >&2
+  echo "  kill \$(lsof -ti tcp:$PORT)" >&2
   echo "Then run ./scripts/start-local.sh again." >&2
   exit 1
 fi

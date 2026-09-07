@@ -23,7 +23,10 @@ class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
 
 
 def main() -> None:
+    socketserver.TCPServer.allow_reuse_address = True
     with socketserver.TCPServer(("127.0.0.1", PORT), NoCacheHandler) as httpd:
+        print(f"Serving {ROOT} at http://127.0.0.1:{PORT}/", flush=True)
+        print("Press Ctrl+C to stop.", flush=True)
         httpd.serve_forever()
 
 
