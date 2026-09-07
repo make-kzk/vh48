@@ -19,24 +19,22 @@ if lsof -ti "tcp:$PORT" >/dev/null 2>&1; then
   exit 1
 fi
 
-BRANCH="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '?')"
-COMMIT="$(git rev-parse --short HEAD 2>/dev/null || echo '?')"
 LANDING_CSS="$ROOT/mockups/vibe-hunt/landing-develop.css"
 
 echo ""
 echo "  vh48 local prototype"
 echo "  ─────────────────────────────────────────"
-echo "  Branch:       $BRANCH @ $COMMIT"
+echo "  Commit:       $(git rev-parse --short HEAD 2>/dev/null || echo '?')"
 if [[ -f "$LANDING_CSS" ]]; then
   echo "  Landing CSS:  landing-develop.css ✓"
 else
-  echo "  Landing CSS:  missing — run: git checkout main && git pull"
+  echo "  Landing CSS:  missing — run: git pull origin main"
 fi
 echo ""
-echo "  Local hub:    http://127.0.0.1:$PORT/local/"
+echo "  Quick sync:   bash scripts/dev.sh"
 echo "  VibeHunt:     http://127.0.0.1:$PORT/mockups/vibe-hunt/index.html"
 echo ""
-echo "  Live reload:  save HTML/CSS/JS → browser updates automatically"
+echo "  Bottom banner shows commit — if wrong, run: bash scripts/dev.sh"
 echo "  Ctrl+C to stop"
 echo ""
 
