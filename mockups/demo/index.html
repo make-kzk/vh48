@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo flow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@600;700;800&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/mockup.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-mockup-home="landing" data-mockup-title="VibeHunt Demo">
+  <div class="mockup-frame mockup-frame--wide">
+    <header class="mockup-header">
+      <button type="button" class="back-btn" data-mockup-back aria-label="Назад">←</button>
+      <h1 class="mockup-title">VibeHunt — demo flow</h1>
+      <span class="mockup-badge">mockup</span>
+    </header>
+
+    <main class="mockup-screens">
+
+      <!-- Landing -->
+      <section class="screen active" data-screen="landing" data-screen-title="Landing">
+        <p class="screen-label">Landing</p>
+        <h2>Платформа для успешных команд</h2>
+        <p>Кликабельный прототип: пройдите путь специалиста от лендинга до результата теста.</p>
+
+        <div class="tab-row" role="tablist" aria-label="Аудитория">
+          <button type="button" class="tab active" role="tab" aria-selected="true"
+            data-toggle-group="audience" data-toggle-target="employee">Для сотрудников</button>
+          <button type="button" class="tab" role="tab" aria-selected="false"
+            data-toggle-group="audience" data-toggle-target="company">Для компаний</button>
+        </div>
+
+        <div class="tab-panel visible" data-toggle-group="audience" data-toggle-panel="employee">
+          <div class="card card--highlight">
+            <strong>Раскрой свой потенциал</strong>
+            <p style="margin-top:8px;font-size:14px;color:var(--vh48-muted)">
+              Узнай, в каких условиях ты работаешь максимально эффективно.
+            </p>
+          </div>
+        </div>
+        <div class="tab-panel" data-toggle-group="audience" data-toggle-panel="company" hidden>
+          <div class="card">
+            <strong>Создавайте сильную команду</strong>
+            <p style="margin-top:8px;font-size:14px;color:var(--vh48-muted)">
+              Снижайте затраты на подбор через анализ ценностей.
+            </p>
+          </div>
+        </div>
+
+        <div class="screen-actions">
+          <button type="button" class="btn btn--primary btn--block" data-nav="register">Начать исследование</button>
+          <button type="button" class="btn btn--ghost btn--block" data-nav="cabinet">Уже есть аккаунт →</button>
+        </div>
+      </section>
+
+      <!-- Register -->
+      <section class="screen" data-screen="register" data-screen-title="Регистрация" hidden aria-hidden="true">
+        <p class="screen-label">Register</p>
+        <h2>Создайте аккаунт</h2>
+        <p>Демо-форма — данные никуда не отправляются.</p>
+
+        <form class="list" onsubmit="return false">
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="you@example.com" autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="password">Пароль</label>
+            <input id="password" type="password" placeholder="••••••••" autocomplete="new-password">
+          </div>
+        </form>
+
+        <div class="screen-actions">
+          <button type="button" class="btn btn--primary btn--block" data-nav="cabinet">Зарегистрироваться</button>
+          <button type="button" class="btn btn--ghost btn--block" data-nav="landing">← На главную</button>
+        </div>
+      </section>
+
+      <!-- Cabinet -->
+      <section class="screen" data-screen="cabinet" data-screen-title="Кабинет" hidden aria-hidden="true">
+        <p class="screen-label">Cabinet</p>
+        <h2>Добро пожаловать!</h2>
+        <p>Выберите тест или перейдите в другой раздел через нижнюю навигацию.</p>
+
+        <div class="list">
+          <button type="button" class="list-item" data-nav="test-step-1">
+            <span class="list-item__icon">◎</span>
+            <span class="list-item__body">
+              <span class="list-item__title">Базовый тест</span>
+              <span class="list-item__meta">~15 мин · не начат</span>
+            </span>
+          </button>
+          <button type="button" class="list-item" disabled>
+            <span class="list-item__icon" style="background:var(--vh48-secondary-l);color:var(--vh48-secondary)">◆</span>
+            <span class="list-item__body">
+              <span class="list-item__title">Коммуникация</span>
+              <span class="list-item__meta">Откроется после базового</span>
+            </span>
+          </button>
+        </div>
+
+        <div class="card">
+          <strong>Профиль заполнен на 40%</strong>
+          <div class="progress" style="margin-top:12px">
+            <div class="progress__bar" style="width:40%"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Test step 1 -->
+      <section class="screen" data-screen="test-step-1" data-screen-title="Тест · 1/3" hidden aria-hidden="true">
+        <p class="screen-label">Test · step 1 of 3</p>
+        <div class="progress"><div class="progress__bar" style="width:33%"></div></div>
+        <h2>Как вы предпочитаете принимать решения?</h2>
+        <p>Выберите один вариант и нажмите «Далее».</p>
+
+        <div class="list" id="answers-1">
+          <button type="button" class="list-item answer" data-answer="a">
+            <span class="list-item__body">
+              <span class="list-item__title">Опираюсь на факты и данные</span>
+            </span>
+          </button>
+          <button type="button" class="list-item answer" data-answer="b">
+            <span class="list-item__body">
+              <span class="list-item__title">Доверяю интуиции и опыту</span>
+            </span>
+          </button>
+          <button type="button" class="list-item answer" data-answer="c">
+            <span class="list-item__body">
+              <span class="list-item__title">Советуюсь с командой</span>
+            </span>
+          </button>
+        </div>
+
+        <div class="screen-actions">
+          <button type="button" class="btn btn--primary btn--block" id="next-1" data-nav="test-step-2" disabled>Далее →</button>
+        </div>
+      </section>
+
+      <!-- Test step 2 -->
+      <section class="screen" data-screen="test-step-2" data-screen-title="Тест · 2/3" hidden aria-hidden="true">
+        <p class="screen-label">Test · step 2 of 3</p>
+        <div class="progress"><div class="progress__bar" style="width:66%"></div></div>
+        <h2>Что для вас важнее в работе?</h2>
+
+        <div class="list" id="answers-2">
+          <button type="button" class="list-item answer" data-answer="a">
+            <span class="list-item__body">
+              <span class="list-item__title">Стабильность и предсказуемость</span>
+            </span>
+          </button>
+          <button type="button" class="list-item answer" data-answer="b">
+            <span class="list-item__body">
+              <span class="list-item__title">Рост и новые вызовы</span>
+            </span>
+          </button>
+        </div>
+
+        <div class="screen-actions">
+          <button type="button" class="btn btn--primary btn--block" id="next-2" data-nav="test-step-3" disabled>Далее →</button>
+        </div>
+      </section>
+
+      <!-- Test step 3 -->
+      <section class="screen" data-screen="test-step-3" data-screen-title="Тест · 3/3" hidden aria-hidden="true">
+        <p class="screen-label">Test · step 3 of 3</p>
+        <div class="progress"><div class="progress__bar" style="width:100%"></div></div>
+        <h2>Sync-Point</h2>
+        <p>Контрольная точка: ответы сохранены. Завершите тест, чтобы увидеть результат.</p>
+
+        <div class="card card--highlight">
+          <strong>3 из 3 шагов пройдено</strong>
+          <p style="margin-top:8px;font-size:14px;color:var(--vh48-muted)">
+            В production scoring выполняется на сервере (§7.2).
+          </p>
+        </div>
+
+        <div class="screen-actions">
+          <button type="button" class="btn btn--primary btn--block" data-nav="result">Завершить тест</button>
+        </div>
+      </section>
+
+      <!-- Result -->
+      <section class="screen" data-screen="result" data-screen-title="Career Vibe" hidden aria-hidden="true">
+        <p class="screen-label">Result</p>
+        <h2>Ваш Career Vibe</h2>
+        <p>Демо-результат — в продукте score считается детерминированно на backend.</p>
+
+        <div class="card card--highlight result-hero">
+          <div class="result-hero__tag">A3 · Архитектор</div>
+          <p class="result-hero__title">Системный аналитик</p>
+          <p class="result-hero__desc">Вы сильны в структурировании сложных задач и поиске оптимальных решений.</p>
+        </div>
+
+        <div class="screen-actions">
+          <button type="button" class="btn btn--primary btn--block" data-nav="cabinet">В кабинет</button>
+          <button type="button" class="btn btn--secondary btn--block" data-nav="reports">Смотреть отчёты</button>
+        </div>
+      </section>
+
+      <!-- Reports -->
+      <section class="screen" data-screen="reports" data-screen-title="Отчёты" hidden aria-hidden="true">
+        <p class="screen-label">Reports</p>
+        <h2>Отчёты</h2>
+        <p>Детальные отчёты открываются после расчёта score.</p>
+
+        <div class="list">
+          <div class="list-item" style="cursor:default">
+            <span class="list-item__icon">📊</span>
+            <span class="list-item__body">
+              <span class="list-item__title">Базовый отчёт</span>
+              <span class="list-item__meta">Доступен</span>
+            </span>
+          </div>
+          <div class="list-item" style="cursor:default;opacity:0.6">
+            <span class="list-item__icon">🔒</span>
+            <span class="list-item__body">
+              <span class="list-item__title">Коммуникация</span>
+              <span class="list-item__meta">Заблокирован</span>
+            </span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <nav class="bottom-nav" aria-label="Основная навигация">
+      <button type="button" data-nav="cabinet" data-nav-active="cabinet">
+        <span class="bottom-nav__icon">⌂</span>
+        Кабинет
+      </button>
+      <button type="button" data-nav="test-step-1" data-nav-active="test-step-1">
+        <span class="bottom-nav__icon">◎</span>
+        Тест
+      </button>
+      <button type="button" data-nav="reports" data-nav-active="reports">
+        <span class="bottom-nav__icon">▤</span>
+        Отчёты
+      </button>
+    </nav>
+  </div>
+
+  <script src="../../assets/mockup.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

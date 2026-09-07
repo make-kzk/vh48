@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{Concept Name}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@600;700;800&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/mockup.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-mockup-home="home" data-mockup-title="{Concept Name}">
+  <div class="mockup-frame">
+    <header class="mockup-header">
+      <button type="button" class="back-btn" data-mockup-back aria-label="Назад">←</button>
+      <h1 class="mockup-title">{Concept Name}</h1>
+      <span class="mockup-badge">draft</span>
+    </header>
+
+    <main class="mockup-screens">
+      <section class="screen active" data-screen="home" data-screen-title="Home">
+        <p class="screen-label">Home</p>
+        <h2>Главный экран</h2>
+        <p>Опишите сценарий. Навигация через <code>data-nav="screen-id"</code>.</p>
+        <div class="screen-actions">
+          <button type="button" class="btn btn--primary btn--block" data-nav="detail">Далее →</button>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="detail" data-screen-title="Detail" hidden aria-hidden="true">
+        <p class="screen-label">Detail</p>
+        <h2>Детальный экран</h2>
+        <p>Кнопка «Назад» использует history stack роутера.</p>
+        <div class="screen-actions">
+          <button type="button" class="btn btn--ghost btn--block" data-nav="back">← Назад</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../../assets/mockup.js"></script>
+</body>
+</html>
