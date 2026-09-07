@@ -36,7 +36,7 @@ echo ""
 echo "  Local hub:    http://127.0.0.1:$PORT/local/"
 echo "  VibeHunt:     http://127.0.0.1:$PORT/mockups/vibe-hunt/index.html"
 echo ""
-echo "  Edit HTML/CSS → Save → Cmd+R in browser (no git push needed)"
+echo "  Live reload:  save HTML/CSS/JS → browser updates automatically"
 echo "  Ctrl+C to stop"
 echo ""
 
