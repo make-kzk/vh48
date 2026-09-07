@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vh48 — local prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@600;700;800&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/mockup.css">
+  <style>
+    .local-banner {
+      background: #1a1a1a;
+      color: #fff;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .local-banner code {
+      background: rgba(255, 255, 255, 0.12);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+
+    .local-primary {
+      border-color: var(--vh48-primary);
+      background: var(--vh48-primary-l);
+    }
+
+    .local-primary .catalog__card-title {
+      color: var(--vh48-primary);
+    }
+  </style>
+</head>
+<body>
+  <div class="local-banner">
+    LOCAL · <code>./scripts/start-local.sh</code> · изменения видны сразу после refresh
+  </div>
+
+  <main class="catalog">
+    <header class="catalog__hero">
+      <p class="catalog__eyebrow">vh48 local</p>
+      <h1 class="catalog__title">Локальный прототип</h1>
+      <p class="catalog__desc">
+        Click-through мокапы без деплоя. Откройте VibeHunt — landing с обновлённым hero,
+        register → cabinet → vibe → reports.
+      </p>
+    </header>
+
+    <div class="catalog__grid">
+      <a class="catalog__card local-primary" href="../mockups/vibe-hunt/index.html">
+        <div class="catalog__card-title">VibeHunt (VibeHunt88/web)</div>
+        <div class="catalog__card-meta">
+          Landing · Register · Cabinet · Vibe · Reports — design system из web
+        </div>
+      </a>
+      <a class="catalog__card" href="../mockups/demo/index.html">
+        <div class="catalog__card-title">Demo flow</div>
+        <div class="catalog__card-meta">Упрощённый пример на vh48-роутере с тестом</div>
+      </a>
+      <a class="catalog__card" href="../">
+        <div class="catalog__card-title">Полный каталог</div>
+        <div class="catalog__card-meta">catalog.json + все мокапы</div>
+      </a>
+    </div>
+  </main>
+</body>
+</html>
