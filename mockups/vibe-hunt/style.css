@@ -18,16 +18,24 @@
   flex-direction: column;
   align-items: center;
   gap: 0;
+  max-width: min(1040px, 96vw);
 }
 .hero-title {
   font-family: var(--vh-font-display, var(--vh-font-family));
   font-size: clamp(2rem, 4.5vw, 3.25rem); font-weight: var(--vh-fw-extrabold);
   line-height: 1.2; letter-spacing: -0.03em; color: var(--vh-color-ink);
-  max-width: 720px; margin: 0 auto 28px;
+  width: 100%;
+  max-width: min(1040px, 96vw);
+  margin: 0 auto 28px;
 }
 .hero-title-line,
 .hero-subtitle-line {
   display: block;
+}
+@media (min-width: 768px) {
+  .hero-title-line {
+    white-space: nowrap;
+  }
 }
 .hero-title em { font-style: normal; color: var(--vh-color-primary); }
 .hero-lead {
