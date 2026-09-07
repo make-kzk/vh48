@@ -73,35 +73,27 @@
 .landing-dm .hero-dm__inner {
   position: relative;
   z-index: 1;
-  max-width: 760px;
+  max-width: 920px;
   margin: 0 auto;
   padding: 0 1.5rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
-}
-
-.landing-dm .hero-dm__pill {
-  display: inline-flex;
-  padding: 0.4rem 1.4rem;
-  border: 1.5px solid var(--dm-pill-border);
-  border-radius: 999px;
-  font-size: 1.05rem;
-  color: #0e7490;
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: var(--dm-pill-shadow);
+  gap: 1.75rem;
 }
 
 .landing-dm .hero-dm__title {
   font-family: Geologica, Inter, sans-serif;
-  font-size: clamp(2.4rem, 5.5vw, 3.75rem);
+  font-size: clamp(2.2rem, 4.8vw, 3.5rem);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.12;
   letter-spacing: -0.03em;
   color: var(--dm-ink);
   margin: 0;
+  width: 100%;
+  max-width: 880px;
+  text-wrap: balance;
 }
 
 .landing-dm .hero-dm__title em {
@@ -111,6 +103,62 @@
 
 .landing-dm .hero-dm__title-line {
   display: block;
+}
+
+.landing-dm .hero-dm__title-line + .hero-dm__title-line {
+  margin-top: 0.06em;
+}
+
+.landing-dm .hero-dm__audience {
+  display: flex;
+  justify-content: center;
+  gap: 0.625rem;
+  flex-wrap: wrap;
+}
+
+.landing-dm .hero-dm__tab {
+  height: 2.75rem;
+  padding: 0 1.35rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border-radius: 0.625rem;
+  border: 1.5px solid var(--dm-border);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  color: var(--dm-muted);
+  background: #fff;
+  font-family: inherit;
+}
+
+.landing-dm .hero-dm__tab.active-orange {
+  background: var(--vh-color-primary);
+  color: #fff;
+  border-color: var(--vh-color-primary);
+  box-shadow: 0 4px 14px rgba(242, 101, 34, 0.25);
+}
+
+.landing-dm .hero-dm__tab.active-violet {
+  background: var(--vh-color-secondary);
+  color: #fff;
+  border-color: var(--vh-color-secondary);
+  box-shadow: 0 4px 14px rgba(107, 78, 255, 0.25);
+}
+
+.landing-dm .hero-dm__tab:not(.active-orange):not(.active-violet):hover {
+  border-color: #d0d5dd;
+  color: var(--dm-ink);
+}
+
+.landing-dm .hero-dm__cta.dm-register-btn.vh-btn--primary {
+  box-shadow: 0 4px 14px rgba(242, 101, 34, 0.28);
+}
+
+.landing-dm .hero-dm__cta.dm-register-btn.vh-btn--secondary {
+  box-shadow: 0 4px 14px rgba(107, 78, 255, 0.28);
+}
+
+.landing-dm .vh-topbar-actions .dm-register-btn.vh-btn--secondary {
+  box-shadow: 0 2px 10px rgba(107, 78, 255, 0.22);
 }
 
 .landing-dm .hero-dm__support {
@@ -150,7 +198,6 @@
   font-size: 1.0625rem;
   font-weight: 600;
   border-radius: 0.75rem;
-  box-shadow: 0 4px 14px rgba(242, 101, 34, 0.28);
 }
 
 .landing-dm .hero-dm__cta-secondary {

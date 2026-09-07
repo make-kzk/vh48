@@ -22,26 +22,33 @@
     }
   });
 
-  window.switchTab = function switchTab(tab) {
+  function setAudience(mode) {
     const tabEmp = document.getElementById('tabEmployee');
     const tabCom = document.getElementById('tabCompany');
-    const panelEmp = document.getElementById('panelEmployee');
-    const panelCom = document.getElementById('panelCompany');
     if (!tabEmp || !tabCom) return;
 
-    tabEmp.classList.remove('active-orange', 'active-violet');
-    tabCom.classList.remove('active-orange', 'active-violet');
-    panelEmp.classList.remove('visible');
-    panelCom.classList.remove('visible');
+    const isEmployee = mode === 'employee';
 
-    if (tab === 'employee') {
-      tabEmp.classList.add('active-orange');
-      panelEmp.classList.add('visible');
-    } else {
-      tabCom.classList.add('active-violet');
-      panelCom.classList.add('visible');
-    }
-  };
+    tabEmp.classList.toggle('active-orange', isEmployee);
+    tabCom.classList.toggle('active-violet', !isEmployee);
+    tabEmp.setAttribute('aria-selected', String(isEmployee));
+    tabCom.setAttribute('aria-selected', String(!isEmployee));
+
+    document.querySelectorAll('.dm-register-btn').forEach((btn) => {
+      btn.classList.remove('vh-btn--primary', 'vh-btn--secondary');
+      btn.classList.add(isEmployee ? 'vh-btn--primary' : 'vh-btn--secondary');
+    });
+  }
+
+  window.switchTab = setAudience;
+
+  const tabEmp = document.getElementById('tabEmployee');
+  const tabCom = document.getElementById('tabCompany');
+  if (tabEmp && tabCom) {
+    tabEmp.addEventListener('click', () => setAudience('employee'));
+    tabCom.addEventListener('click', () => setAudience('company'));
+    setAudience('employee');
+  }
 
   const topbar = document.getElementById('topbar');
   if (topbar) {
