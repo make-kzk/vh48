@@ -199,6 +199,28 @@ a:hover { color: var(--vh-color-primary); }
   margin-top: var(--vh-space-4);
 }
 
+.vh-footer .vh-logo {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.vh-footer .vh-logo span {
+  color: var(--vh-color-primary);
+}
+
+.vh-footer-nav button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--vh-text-sm);
+  color: rgba(255, 255, 255, 0.45);
+  padding: 0;
+}
+
+.vh-footer-nav button:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
 @media (max-width: 768px) {
   .vh-nav { display: none; }
 }

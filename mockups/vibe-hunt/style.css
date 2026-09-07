@@ -2,8 +2,9 @@
 
 /* Screen routing */
 .app-root { min-height: 100dvh; }
-.screen { display: none; animation: fadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
-.screen.active { display: block; }
+.screen { display: none !important; animation: fadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+.screen.active { display: block !important; }
+.screen.active.app-screen { display: flex !important; flex-direction: column; }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
@@ -158,7 +159,6 @@
 /* ── APP SCREENS (dark, from vibe-dashboard-mock) ── */
 .app-screen {
   min-height: 100dvh; background: var(--vh-bg-page); color: var(--vh-color-ink);
-  display: flex; flex-direction: column;
 }
 .app-screen[data-theme-scope="dark"] {
   --vh-bg-page: #101014; --vh-bg-surface: #17171c; --vh-color-ink: #f5f5f7;
