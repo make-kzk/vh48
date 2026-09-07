@@ -1,9 +1,16 @@
 {
   "mockups": [
     {
+      "slug": "vibe-hunt",
+      "title": "VibeHunt (VibeHunt88)",
+      "summary": "Оригинальный click-through из VibeHunt88/web: landing → register → cabinet → vibe → reports.",
+      "path": "mockups/vibe-hunt/index.html",
+      "tags": ["vibehunt", "vibehunt88", "production-design"]
+    },
+    {
       "slug": "demo",
       "title": "Demo flow",
-      "summary": "Пример: landing → регистрация → кабинет → тест (5 шагов) → результат.",
+      "summary": "Упрощённый пример на vh48-роутере: landing → регистрация → кабинет → тест → результат.",
       "path": "mockups/demo/index.html",
       "tags": ["example", "vibehunt"]
     }

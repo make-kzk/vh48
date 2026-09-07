@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VibeHunt — click-through mockup</title>
+  <meta name="theme-color" content="#fafafa">
+  <link rel="stylesheet" href="vh-tokens.css">
+  <link rel="stylesheet" href="vh-components.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-root">
+    <main class="screens">
+
+      <!-- Landing — from VibeHunt88/web uploads -->
+      <section class="screen active" data-screen="landing">
+        <header class="vh-topbar" id="topbar">
+          <div class="vh-topbar-inner">
+            <button type="button" class="vh-logo" data-nav="landing">Vibe<span>Hunt</span></button>
+            <nav class="vh-nav" aria-label="Основная навигация">
+              <a href="#hero" class="vh-nav-link">Для кандидатов</a>
+              <a href="#advantages" class="vh-nav-link">Для компаний</a>
+            </nav>
+            <div class="vh-topbar-actions">
+              <button type="button" class="vh-login-link" data-nav="cabinet">Войти</button>
+              <button type="button" class="vh-btn vh-btn--primary" data-nav="register">Начать исследование</button>
+            </div>
+          </div>
+        </header>
+
+        <section class="hero" id="hero">
+          <div class="vh-container">
+            <div class="hero-eyebrow">Диагностика нового поколения</div>
+            <h1 class="hero-title"><em>VibeHunt</em> — платформа для создания успешных команд и гармоничного карьерного планирования</h1>
+            <p class="hero-subtitle">Согласно исследованиям Harvard Business Review, сотрудники, чьи сильные стороны совпадают с требованиями роли, показывают на 21–36% более высокую производительность.</p>
+            <p class="hero-source"><strong>Harvard Business Review</strong> · Исследование вовлечённости сотрудников</p>
+            <div class="hero-tabs">
+              <button class="hero-tab active-orange" id="tabEmployee" type="button" onclick="switchTab('employee')">Для сотрудников</button>
+              <button class="hero-tab" id="tabCompany" type="button" onclick="switchTab('company')">Для компаний</button>
+            </div>
+            <div class="hero-panel visible" id="panelEmployee">
+              <h2 class="hero-panel-title">Раскрой свой истинный потенциал</h2>
+              <div class="hero-cards">
+                <div class="hero-card"><div class="hero-card-icon orange">◎</div><h3>Пойми свои сильные стороны</h3><p>Узнай, в каких условиях ты работаешь максимально эффективно</p></div>
+                <div class="hero-card"><div class="hero-card-icon orange">→</div><h3>Найди идеальную среду</h3><p>Определи условия и роли, где твои ценности совпадают с работой</p></div>
+                <div class="hero-card"><div class="hero-card-icon orange">◆</div><h3>Избегай выгорания</h3><p>Выяви риски заранее и выстраивай здоровые рабочие границы</p></div>
+              </div>
+              <button type="button" class="vh-btn vh-btn--outline-primary vh-btn--lg" data-nav="register">Начать исследование</button>
+            </div>
+            <div class="hero-panel" id="panelCompany">
+              <h2 class="hero-panel-title">Создавайте сильную команду</h2>
+              <div class="hero-cards">
+                <div class="hero-card"><div class="hero-card-icon violet">▣</div><h3>Экономьте время на скрининге</h3><p>Снижайте затраты на подбор до 70% через анализ ценностей</p></div>
+                <div class="hero-card"><div class="hero-card-icon violet">✓</div><h3>Повышайте удержание</h3><p>Сокращайте текучку на 40% благодаря совпадению ценностей</p></div>
+                <div class="hero-card"><div class="hero-card-icon violet">↗</div><h3>Растите эффективность</h3><p>Увеличивайте производительность через распределение ролей</p></div>
+              </div>
+              <button type="button" class="vh-btn vh-btn--secondary vh-btn--lg" data-nav="register">Узнать подробнее</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="advantages" id="advantages">
+          <div class="vh-container">
+            <div class="section-header">
+              <div class="section-label">Методология</div>
+              <h2 class="section-title">Инновационный подход к диагностике</h2>
+              <p class="section-desc">Платформа анализирует более 50 факторов, чтобы составить уникальный профессиональный профиль.</p>
+            </div>
+            <div class="adv-grid">
+              <div class="adv-item"><div class="adv-num">01</div><h3>Глубокая аналитика</h3><p>Осознанный карьерный путь на основе данных, а не интуиции.</p></div>
+              <div class="adv-item"><div class="adv-num">02</div><h3>Точные рекомендации</h3><p>Риски выгорания и конфликтов — с инструментами профилактики.</p></div>
+              <div class="adv-item"><div class="adv-num">03</div><h3>Улучшение взаимодействия</h3><p>Сильные стороны и зоны развития каждого участника команды.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="stats" id="stats">
+          <div class="vh-container">
+            <div class="section-header">
+              <div class="section-label">Результаты</div>
+              <h2 class="section-title">Статистика эффективности</h2>
+            </div>
+            <div class="stats-grid">
+              <div class="stat-item"><div class="stat-value"><span>78</span>%</div><div class="stat-label">отмечают улучшение понимания сильных сторон</div></div>
+              <div class="stat-item"><div class="stat-value"><span>65</span>%</div><div class="stat-label">принимают более осознанные карьерные решения</div></div>
+              <div class="stat-item"><div class="stat-value"><span>84</span>%</div><div class="stat-label">улучшают взаимодействие в команде</div></div>
+              <div class="stat-item"><div class="stat-value"><span>72</span>%</div><div class="stat-label">повышают удовлетворённость работой</div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cta-section">
+          <div class="cta-inner">
+            <h2>Сделай следующий шаг в своей карьере</h2>
+            <p>Начни путь к осознанному выбору. Бесплатно, ~25 минут.</p>
+            <button type="button" class="vh-btn vh-btn--primary vh-btn--lg" data-nav="register">Начать тест</button>
+          </div>
+        </section>
+
+        <footer class="vh-footer">
+          <div class="vh-footer-inner">
+            <span class="vh-logo">Vibe<span style="color:var(--vh-color-primary)">Hunt</span></span>
+            <nav class="vh-footer-nav">
+              <button type="button" data-nav="landing" style="background:none;border:none;color:inherit;cursor:pointer;font:inherit;font-size:inherit">Главная</button>
+              <button type="button" data-nav="cabinet" style="background:none;border:none;color:inherit;cursor:pointer;font:inherit;font-size:inherit">Кабинет</button>
+            </nav>
+            <p class="vh-footer-copy">© VibeHunter, 2025 · mockup from VibeHunt88/web</p>
+          </div>
+        </footer>
+      </section>
+
+      <!-- Register / onboarding -->
+      <section class="screen" data-screen="register">
+        <div class="auth-wrap">
+          <div class="auth-card">
+            <button type="button" class="vh-btn vh-btn--ghost" data-nav="landing" style="margin-bottom:20px">← На главную</button>
+            <h1>Регистрация</h1>
+            <p>Создай аккаунт и пройди первый тест — Карьерный Код откроется в кабинете.</p>
+            <div class="field"><label>Email</label><input type="email" value="aliya@example.kz" readonly></div>
+            <div class="field"><label>Пароль</label><input type="password" value="••••••••" readonly></div>
+            <label class="consent"><input type="checkbox" checked> Согласие на обработку данных</label>
+            <button type="button" class="vh-btn vh-btn--primary vh-btn--lg" style="width:100%" data-nav="cabinet">Создать аккаунт →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cabinet — from vibe-dashboard-mock/Cabinet.dc.html -->
+      <section class="screen app-screen" data-screen="cabinet" data-theme-scope="dark">
+        <div class="desktop-bar">
+          <button type="button" data-nav="landing">← Landing</button>
+          <span style="color:var(--vh-color-muted);font-size:12px">VibeHunt · кабинет специалиста</span>
+        </div>
+        <div class="phone-frame">
+          <header class="app-header">
+            <span class="wordmark-sm">VIBEHUNT</span>
+            <div style="width:34px;height:34px;border-radius:50%;background:#1d1d24;border:1px solid rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700">АК</div>
+          </header>
+          <div class="app-greeting">
+            <div class="app-eyebrow">Кабинет</div>
+            <div class="app-title">Привет, Алия</div>
+          </div>
+          <div class="hero-card-app">
+            <div style="font-size:48px">◇</div>
+            <div>
+              <div class="app-eyebrow" style="color:var(--vh-color-primary)">Твой вайб</div>
+              <div class="archetype">Харизматичный авторитет</div>
+              <button type="button" class="cta-link" data-nav="vibe">Открыть Карьерный Код →</button>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-eyebrow">Путь Карьерного Кода · 60%</div>
+            <div class="progress-bar"><div style="width:60%"></div></div>
+            <div class="path-row done"><strong>Фундаментальный тест</strong><span class="meta">ПРОЙДЕН</span></div>
+            <div class="path-row done"><strong>Ценности</strong><span class="meta">РАДАР ОТКРЫТ</span></div>
+            <div class="path-row active"><strong>Тест коммуникации</strong><span class="meta">~15 мин · Пройти →</span></div>
+            <div class="path-row locked"><strong>Когнитивный тест</strong><span class="meta">???</span></div>
+          </div>
+          <div class="panel">
+            <div class="panel-eyebrow" style="color:#8e78ff">Сообщество</div>
+            <p style="font-size:14px;line-height:1.5">Ты среди <strong style="color:#8e78ff">первых 128</strong> специалистов</p>
+          </div>
+          <nav class="bottom-nav" aria-label="Навигация приложения">
+            <button type="button" class="active" data-nav="cabinet">▣<span>Кабинет</span></button>
+            <button type="button" data-nav="vibe">◇<span>Вайб</span></button>
+            <button type="button" data-nav="cabinet">▷<span>Тесты</span></button>
+            <button type="button" data-nav="reports">▤<span>Отчёты</span></button>
+          </nav>
+        </div>
+      </section>
+
+      <!-- Vibe / Career Code — from Main.dc.html + career-code upload -->
+      <section class="screen app-screen" data-screen="vibe" data-theme-scope="dark">
+        <div class="desktop-bar">
+          <button type="button" data-nav="cabinet">← Кабинет</button>
+          <span style="color:var(--vh-color-muted);font-size:12px">Карьерный Код · срез №1</span>
+        </div>
+        <div class="phone-frame">
+          <header class="app-header"><span class="wordmark-sm">VIBEHUNT</span></header>
+          <div class="vibe-hero">
+            <div class="app-eyebrow">Карьерный Код · 21.08.2026</div>
+            <div class="app-eyebrow" style="color:var(--vh-color-primary)">Вайб</div>
+            <h2>Харизматичного авторитета</h2>
+            <span class="vibe-pill">A3W · v1.1.0</span>
+            <span class="vibe-pill accent">лидер по призванию</span>
+            <p style="font-size:13px;color:rgba(255,255,255,0.62);margin-top:16px;line-height:1.55">Ты вдохновляешь команду и берёшь ответственность за результат. Сильная сторона — стратегическое видение и влияние без давления.</p>
+          </div>
+          <div class="panel">
+            <div class="panel-eyebrow">4 области профиля</div>
+            <div class="path-row done"><strong>Личность и мотивация</strong><span class="meta">92</span></div>
+            <div class="path-row done"><strong>Ценности</strong><span class="meta">87</span></div>
+            <div class="path-row active"><strong>Коммуникация</strong><span class="meta">blur · пройти тест</span></div>
+            <div class="path-row locked"><strong>Когниция</strong><span class="meta">???</span></div>
+          </div>
+          <nav class="bottom-nav">
+            <button type="button" data-nav="cabinet">▣<span>Кабинет</span></button>
+            <button type="button" class="active" data-nav="vibe">◇<span>Вайб</span></button>
+            <button type="button" data-nav="cabinet">▷<span>Тесты</span></button>
+            <button type="button" data-nav="reports">▤<span>Отчёты</span></button>
+          </nav>
+        </div>
+      </section>
+
+      <!-- Reports — from Reports.dc.html -->
+      <section class="screen app-screen" data-screen="reports" data-theme-scope="dark">
+        <div class="desktop-bar">
+          <button type="button" data-nav="cabinet">← Кабинет</button>
+          <span style="color:var(--vh-color-muted);font-size:12px">Отчёты</span>
+        </div>
+        <div class="phone-frame">
+          <header class="app-header"><span class="wordmark-sm">VIBEHUNT</span></header>
+          <div class="app-greeting">
+            <div class="app-eyebrow">Отчёты</div>
+            <div class="app-title">12 разделов</div>
+          </div>
+          <button type="button" class="report-card" data-nav="vibe">
+            <div style="font-size:24px">📄</div>
+            <div><strong>Базовый отчёт · Карьерный Код</strong><span>12 разделов · прочитано 4</span></div>
+          </button>
+          <div class="report-card" style="opacity:0.5;cursor:default">
+            <div style="font-size:24px">🔒</div>
+            <div><strong>Расширенный отчёт · Коммуникация</strong><span>Откроется после теста</span></div>
+          </div>
+          <div class="report-card" style="opacity:0.5;cursor:default">
+            <div style="font-size:24px">🔒</div>
+            <div><strong>Командный fit</strong><span>Скоро · VH Hire</span></div>
+          </div>
+          <nav class="bottom-nav">
+            <button type="button" data-nav="cabinet">▣<span>Кабинет</span></button>
+            <button type="button" data-nav="vibe">◇<span>Вайб</span></button>
+            <button type="button" data-nav="cabinet">▷<span>Тесты</span></button>
+            <button type="button" class="active" data-nav="reports">▤<span>Отчёты</span></button>
+          </nav>
+        </div>
+      </section>
+
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
