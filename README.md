@@ -9,7 +9,16 @@
 - [Каталог мокапов](https://make-kzk.github.io/vh48/)
 - [Demo flow](https://make-kzk.github.io/vh48/mockups/demo/index.html)
 
-> Репозиторий должен быть **public**, а GitHub Pages — source **GitHub Actions** (см. Settings → Pages).
+### Одноразовая настройка GitHub Pages (как у [Vaibee](https://make-kzk.github.io/Vaibee/))
+
+1. **Settings → General → Danger Zone → Change visibility → Public**  
+   (без public Pages не откроется анонимно)
+2. **Settings → Pages → Build and deployment**
+   - Source: **Deploy from a branch**
+   - Branch: **`main`** / **`/ (root)`**
+3. Подождите 1–2 мин — сайт появится по ссылке выше
+
+Сборка не нужна: статические HTML/CSS/JS из корня репозитория.
 
 ## Быстрый старт
 
