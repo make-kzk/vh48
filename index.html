@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vh48 — click-through mockups</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@600;700;800&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/mockup.css">
+</head>
+<body>
+  <main class="catalog">
+    <header class="catalog__hero">
+      <p class="catalog__eyebrow">vh48</p>
+      <h1 class="catalog__title">Click-through mockups</h1>
+      <p class="catalog__desc">
+        Интерактивные кликабельные прототипы без сборки: HTML + CSS + один JS-роутер.
+        Откройте мокап или скопируйте шаблон из <code>templates/prototype/</code>.
+      </p>
+    </header>
+
+    <div class="catalog__grid" id="catalog"></div>
+  </main>
+
+  <script>
+    fetch('catalog.json')
+      .then((r) => r.json())
+      .then(({ mockups }) => {
+        const root = document.getElementById('catalog');
+        root.innerHTML = mockups
+          .map(
+            (m) => `
+          <a class="catalog__card" href="${m.path}">
+            <div class="catalog__card-title">${m.title}</div>
+            <div class="catalog__card-meta">${m.summary}</div>
+          </a>`,
+          )
+          .join('');
+      })
+      .catch(() => {
+        document.getElementById('catalog').innerHTML =
+          '<p class="catalog__card-meta">Не удалось загрузить catalog.json — откройте <a href="mockups/demo/index.html">demo</a> напрямую.</p>';
+      });
+  </script>
+</body>
+</html>

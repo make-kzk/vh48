@@ -1,0 +1,11 @@
+{
+  "mockups": [
+    {
+      "slug": "demo",
+      "title": "Demo flow",
+      "summary": "Пример: landing → регистрация → кабинет → тест (5 шагов) → результат.",
+      "path": "mockups/demo/index.html",
+      "tags": ["example", "vibehunt"]
+    }
+  ]
+}
