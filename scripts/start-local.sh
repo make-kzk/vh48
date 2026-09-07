@@ -12,11 +12,9 @@ cd "$ROOT"
 echo "Starting vh48 on port $PORT..."
 
 if lsof -ti "tcp:$PORT" >/dev/null 2>&1; then
-  echo "Port $PORT is already in use." >&2
-  echo "Stop the old server: Ctrl+C in that terminal, or run:" >&2
-  echo "  kill \$(lsof -ti tcp:$PORT)" >&2
-  echo "Then run ./scripts/start-local.sh again." >&2
-  exit 1
+  echo "Port $PORT already in use — dev server is running." >&2
+  echo "Open: http://127.0.0.1:$PORT/mockups/vibe-hunt/index.html" >&2
+  exit 0
 fi
 
 LANDING_CSS="$ROOT/mockups/vibe-hunt/landing-develop.css"
@@ -31,10 +29,11 @@ else
   echo "  Landing CSS:  missing — run: git pull origin main"
 fi
 echo ""
-echo "  Quick sync:   bash scripts/dev.sh"
+echo "  Auto-sync:    git pull every 15s (disable: VH48_AUTO_SYNC=0)"
 echo "  VibeHunt:     http://127.0.0.1:$PORT/mockups/vibe-hunt/index.html"
 echo ""
-echo "  Bottom banner shows commit — if wrong, run: bash scripts/dev.sh"
+echo "  Cursor/VS Code: server starts when you open this folder"
+echo "  Or double-click: Open VibeHunt Dev.command"
 echo "  Ctrl+C to stop"
 echo ""
 
