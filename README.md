@@ -23,8 +23,25 @@
 
 ## Быстрый старт
 
-1. Откройте [каталог](https://make-kzk.github.io/vh48/) или [демо](https://make-kzk.github.io/vh48/mockups/demo/index.html)
-2. Локально (опционально):
+### Локальный прототип
+
+```bash
+cd vh48
+./scripts/start-local.sh
+```
+
+Откройте **http://127.0.0.1:8080/local/** — hub с ссылками на все мокапы.
+
+| Мокап | Локальный URL |
+|-------|---------------|
+| **VibeHunt** | http://127.0.0.1:8080/mockups/vibe-hunt/index.html |
+| Demo flow | http://127.0.0.1:8080/mockups/demo/index.html |
+| Каталог | http://127.0.0.1:8080/ |
+
+### Online (GitHub Pages)
+
+1. Откройте [каталог](https://make-kzk.github.io/vh48/) или [VibeHunt](https://make-kzk.github.io/vh48/mockups/vibe-hunt/index.html)
+2. Локально без скрипта (опционально):
 
 ```bash
 python3 -m http.server 8080
