@@ -28,9 +28,19 @@
     if (!tabEmp || !tabCom) return;
 
     const isEmployee = mode === 'employee';
+    const btnClasses = ['vh-btn--primary', 'vh-btn--secondary', 'vh-btn--outline-primary'];
 
-    tabEmp.classList.toggle('active-orange', isEmployee);
-    tabCom.classList.toggle('active-violet', !isEmployee);
+    tabEmp.classList.remove(...btnClasses);
+    tabCom.classList.remove(...btnClasses);
+
+    if (isEmployee) {
+      tabEmp.classList.add('vh-btn--primary');
+      tabCom.classList.add('vh-btn--outline-primary');
+    } else {
+      tabCom.classList.add('vh-btn--secondary');
+      tabEmp.classList.add('vh-btn--outline-primary');
+    }
+
     tabEmp.setAttribute('aria-selected', String(isEmployee));
     tabCom.setAttribute('aria-selected', String(!isEmployee));
 
