@@ -2,11 +2,19 @@
 
 Инструментарий для **интерактивных кликабельных мокапов** — без сборки, только HTML + CSS + один JS-роутер.
 
+## Live
+
+**https://make-kzk.github.io/vh48/**
+
+- [Каталог мокапов](https://make-kzk.github.io/vh48/)
+- [Demo flow](https://make-kzk.github.io/vh48/mockups/demo/index.html)
+
+> Репозиторий должен быть **public**, а GitHub Pages — source **GitHub Actions** (см. Settings → Pages).
+
 ## Быстрый старт
 
-1. Откройте [`index.html`](./index.html) — каталог мокапов
-2. Или сразу демо: [`mockups/demo/index.html`](./mockups/demo/index.html)
-3. Локальный сервер (опционально, для catalog.json):
+1. Откройте [каталог](https://make-kzk.github.io/vh48/) или [демо](https://make-kzk.github.io/vh48/mockups/demo/index.html)
+2. Локально (опционально):
 
 ```bash
 python3 -m http.server 8080
