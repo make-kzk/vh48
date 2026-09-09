@@ -15,20 +15,24 @@
     <main class="screens">
 
       <!-- Landing — Develop.Me-inspired layout -->
-      <section class="screen active landing-dm" data-screen="landing">
+      <section class="screen active landing-dm" data-screen="landing" data-audience="employee">
         <header class="vh-topbar landing-dm__topbar" id="topbar">
           <div class="vh-topbar-inner landing-dm__topbar-inner">
             <div class="landing-dm__topbar-row">
               <div class="landing-dm__topbar-brand">
-                <button type="button" class="vh-logo" data-nav="landing">Vibe<span>Hunt</span></button>
+                <button type="button" class="vh-logo vh-logo--split" data-nav="landing"><span class="vh-logo__vibe">Vibe</span><span class="vh-logo__hunt">Hunt</span></button>
               </div>
               <nav class="landing-dm__topbar-nav" aria-label="Основная навигация">
-                <button type="button" class="vh-btn vh-btn--primary landing-dm__topbar-audience-btn" data-audience-switch="employee" role="tab" aria-selected="true">Для сотрудников</button>
-                <button type="button" class="vh-btn vh-btn--outline-secondary landing-dm__topbar-audience-btn" data-audience-switch="company" role="tab" aria-selected="false">Для компаний</button>
-                <button type="button" class="landing-dm__topbar-hunt" data-nav="register">начать охоту →</button>
-                <button type="button" class="landing-dm__topbar-ai" data-nav="cabinet">AI Ассистент</button>
+                <div class="audience-toggle audience-toggle--compact" role="tablist" aria-label="Аудитория">
+                  <span class="audience-toggle__thumb" aria-hidden="true"></span>
+                  <button type="button" class="audience-toggle__option" data-audience-switch="employee" role="tab" aria-selected="true">Для сотрудников</button>
+                  <button type="button" class="audience-toggle__option" data-audience-switch="company" role="tab" aria-selected="false">Для компаний</button>
+                </div>
+                <button type="button" class="vh-hunt-btn vh-hunt-btn--primary landing-dm__topbar-hunt" data-nav="register">Начать охоту <span class="vh-hunt-btn__arrow" aria-hidden="true">→</span></button>
               </nav>
-              <div class="landing-dm__topbar-balance" aria-hidden="true"></div>
+              <div class="landing-dm__topbar-actions">
+                <button type="button" class="landing-dm__topbar-ask" data-nav="cabinet">задать вопрос <svg class="landing-dm__topbar-ask-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.25" stroke="currentColor" stroke-width="1.5"/><path d="M7.75 7.5a2.25 2.25 0 0 1 4.1 1.15c0 1.45-1.85 1.6-1.85 3.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="14.25" r="0.75" fill="currentColor"/></svg></button>
+              </div>
             </div>
           </div>
         </header>
@@ -38,8 +42,11 @@
           <div class="hero-dm__blob hero-dm__blob--2" aria-hidden="true"></div>
           <div class="hero-dm__inner">
             <h1 class="hero-dm__title">
-              <span class="hero-dm__title-line"><em>VibeHunt</em> — платформа для</span>
-              <span class="hero-dm__title-line">создания успешных команд</span>
+              <span class="hero-dm__title-line">
+                <em class="hero-dm__brand"><span class="vh-logo__vibe">Vibe</span><span class="vh-logo__hunt">Hunt</span></em><span class="hero-dm__title-plain"> — платформа для</span>
+              </span>
+              <span class="hero-dm__title-line hero-dm__title-tagline" data-audience-tagline="employee"><span class="hero-dm__title-plain">создания </span><span class="hero-dm__title-accent">успешной карьеры</span></span>
+              <span class="hero-dm__title-line hero-dm__title-tagline" data-audience-tagline="company"><span class="hero-dm__title-plain">создания </span><span class="hero-dm__title-accent">успешной команды</span></span>
             </h1>
             <p class="hero-dm__support">
               <span class="hero-dm__support-line">Сотрудники, чьи сильные стороны совпадают с требованиями роли,</span>
@@ -47,11 +54,14 @@
             </p>
             <p class="hero-dm__source"><strong>Harvard Business Review</strong> · Исследование вовлечённости сотрудников</p>
             <div class="hero-dm__actions">
-              <div class="hero-dm__audience-group" role="tablist" aria-label="Аудитория">
-                <button type="button" class="vh-btn vh-btn--primary hero-dm__cta hero-dm__audience-btn" data-audience-switch="employee" role="tab" aria-selected="true">Для сотрудников</button>
-                <button type="button" class="vh-btn vh-btn--outline-primary hero-dm__cta hero-dm__audience-btn" data-audience-switch="company" role="tab" aria-selected="false">Для компаний</button>
+              <div class="hero-dm__actions-stack">
+                <div class="audience-toggle audience-toggle--hero" role="tablist" aria-label="Аудитория">
+                  <span class="audience-toggle__thumb" aria-hidden="true"></span>
+                  <button type="button" class="audience-toggle__option" data-audience-switch="employee" role="tab" aria-selected="true">Для сотрудников</button>
+                  <button type="button" class="audience-toggle__option" data-audience-switch="company" role="tab" aria-selected="false">Для компаний</button>
+                </div>
+                <button type="button" class="vh-hunt-btn vh-hunt-btn--hero vh-hunt-btn--primary" data-nav="register">Начать охоту <span class="vh-hunt-btn__arrow" aria-hidden="true">→</span></button>
               </div>
-              <button type="button" class="hero-dm__cta-hunt" data-nav="register">начать охоту <span class="hero-dm__cta-hunt-arrow" aria-hidden="true">→</span></button>
             </div>
             <div class="hero-dm__trust">
               <span>Бесплатно · ~25 минут</span>
@@ -643,10 +653,10 @@
           </div>
         </section>
 
-        <section class="how-dm" id="how">
+        <section class="how-dm" id="how" data-audience-view="employee">
           <div class="how-dm__inner">
             <h2 class="how-dm__title">Как работает сервис</h2>
-            <div class="how-dm__layout">
+            <div class="how-dm__layout" data-audience-how="employee">
               <div class="how-dm__nav">
                 <div class="how-dm__rail" aria-hidden="true">
                   <span class="how-dm__line"></span>
@@ -812,6 +822,427 @@
                       <div class="how-dm__mock-plan-item"><span>1</span><p>Усилить навыки стратегического влияния</p></div>
                       <div class="how-dm__mock-plan-item"><span>2</span><p>Прокачать коммуникацию в кросс-функциональных командах</p></div>
                       <div class="how-dm__mock-plan-item"><span>3</span><p>Собрать портфолио кейсов для целевых ролей</p></div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+
+            <div class="how-dm__layout how-dm__layout--company" data-audience-how="company" hidden>
+              <div class="how-dm__nav">
+                <div class="how-dm__rail" aria-hidden="true">
+                  <span class="how-dm__line"></span>
+                  <span class="how-dm__indicator"></span>
+                </div>
+                <div class="how-dm__steps" role="tablist" aria-label="Как работает сервис для компаний">
+                  <article class="how-dm__step how-dm__step--active">
+                    <button type="button" class="how-dm__tab" role="tab" aria-selected="true" data-how-step="0">формируйте профиль роли и цели позиции</button>
+                    <div class="how-dm__tab-panel" role="tabpanel">
+                      <p>Задайте цели позиции, функциональные роли и критерии culture fit — платформа сформирует профиль для точного подбора.</p>
+                    </div>
+                  </article>
+                  <article class="how-dm__step">
+                    <button type="button" class="how-dm__tab" role="tab" aria-selected="false" data-how-step="1">получайте кандидатов с совпадением по ценностям</button>
+                    <div class="how-dm__tab-panel" role="tabpanel" hidden>
+                      <p>Система находит кандидатов из базы и дополнительных источников, ранжируя их по совпадению с профилем роли.</p>
+                    </div>
+                  </article>
+                  <article class="how-dm__step">
+                    <button type="button" class="how-dm__tab" role="tab" aria-selected="false" data-how-step="2">автоматизируйте подготовку встреч</button>
+                    <div class="how-dm__tab-panel" role="tabpanel" hidden>
+                      <p>Календарь, напоминания и брифы для интервью подключаются в один клик — без лишней переписки между HR и нанимающим менеджером.</p>
+                    </div>
+                  </article>
+                  <article class="how-dm__step">
+                    <button type="button" class="how-dm__tab" role="tab" aria-selected="false" data-how-step="3">анализируйте результаты интервью</button>
+                    <div class="how-dm__tab-panel" role="tabpanel" hidden>
+                      <p>Платформа резюмирует встречи и даёт рекомендации по каждому кандидату на основе профиля роли и ценностей команды.</p>
+                    </div>
+                  </article>
+                  <article class="how-dm__step">
+                    <button type="button" class="how-dm__tab" role="tab" aria-selected="false" data-how-step="4">формируйте офферы и адаптацию</button>
+                    <div class="how-dm__tab-panel" role="tabpanel" hidden>
+                      <p>Вся информация по кандидату в одном окне — от скоринга до рекомендаций по офферу и плану адаптации.</p>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="how-dm__preview how-dm__preview--company">
+                <div class="how-dm__panel how-dm__panel--active" data-how-panel="0" role="tabpanel">
+                  <div class="how-dm__shot how-dm__shot--laptop">
+                    <div class="how-dm__laptop" aria-label="Настройка позиции в разделе рекрутинга">
+                      <div class="how-dm__laptop-bar" aria-hidden="true">
+                        <span class="how-dm__laptop-dot"></span>
+                        <span class="how-dm__laptop-dot"></span>
+                        <span class="how-dm__laptop-dot"></span>
+                      </div>
+                      <div class="how-dm__laptop-screen">
+                        <div class="how-dm__laptop-app">
+                          <aside class="preview-sidebar preview-sidebar--company how-dm__laptop-sidebar" aria-label="Навигация кабинета компании">
+                            <div class="preview-sidebar__brand">
+                              <span class="preview-sidebar__logo">Vibe<span>Hunt</span></span>
+                              <span class="preview-sidebar__badge">Business</span>
+                            </div>
+                            <nav class="preview-sidebar__nav">
+                              <span class="preview-nav">
+                                <svg class="preview-nav__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8.5h14M8.5 8.5V17" stroke="currentColor" stroke-width="1.5"/></svg>
+                                Кабинет
+                              </span>
+                              <span class="preview-nav preview-nav--active preview-nav--company" aria-current="page">
+                                <svg class="preview-nav__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="6.5" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M7 6.5V5a3 3 0 0 1 6 0v1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+                                Рекрутинг
+                              </span>
+                              <span class="preview-nav">
+                                <svg class="preview-nav__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 14.5V8.5l6-3.5 6 3.5v6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 14.5v-3h4v3" stroke="currentColor" stroke-width="1.5"/></svg>
+                                Адаптация
+                              </span>
+                              <span class="preview-nav">
+                                <svg class="preview-nav__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="2" stroke="currentColor" stroke-width="1.5"/><circle cx="4" cy="6" r="1.5" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="6" r="1.5" stroke="currentColor" stroke-width="1.5"/><circle cx="4" cy="14" r="1.5" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="14" r="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+                                Карта команды
+                              </span>
+                            </nav>
+                            <div class="preview-sidebar__user">
+                              <span class="preview-sidebar__avatar preview-sidebar__avatar--company" aria-hidden="true">М</span>
+                              <span class="preview-sidebar__user-info">
+                                <span class="preview-sidebar__name">Марина С.</span>
+                                <span class="preview-sidebar__email">hr@acme.test</span>
+                              </span>
+                            </div>
+                          </aside>
+                          <main class="preview-role" aria-label="Настройка позиции">
+                            <div class="preview-role__head">
+                              <div>
+                                <div class="preview-role__eyebrow">Рекрутинг · FinTech</div>
+                                <h3 class="preview-role__title">Senior Product Manager</h3>
+                              </div>
+                              <span class="preview-role__status">Настройка позиции</span>
+                            </div>
+                            <div class="preview-role__tabs" aria-hidden="true">
+                              <span class="preview-role__tab">Общее</span>
+                              <span class="preview-role__tab preview-role__tab--active">Профиль роли</span>
+                              <span class="preview-role__tab">Кандидаты</span>
+                              <span class="preview-role__tab">Встречи</span>
+                            </div>
+                            <div class="preview-role__grid">
+                              <div class="preview-role__stack">
+                                <article class="preview-role__card">
+                                  <div class="preview-role__card-head">
+                                    <div class="preview-role__label">Цель позиции</div>
+                                    <span class="preview-role__edit" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M11.3 1.7l3 3-8.8 8.8H2.5v-3l8.8-8.8z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/></svg></span>
+                                  </div>
+                                  <p class="preview-role__goal">Запуск FinTech-продукта на новом рынке</p>
+                                </article>
+                                <article class="preview-role__card">
+                                  <div class="preview-role__card-head">
+                                    <div class="preview-role__label-row">
+                                      <div class="preview-role__label">KPI на период адаптации</div>
+                                      <span class="preview-role__edit" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M11.3 1.7l3 3-8.8 8.8H2.5v-3l8.8-8.8z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/></svg></span>
+                                    </div>
+                                  </div>
+                                  <ul class="preview-role__kpi-list">
+                                    <li>DAU +25% за 90 дней</li>
+                                    <li>NPS продукта ≥ 45</li>
+                                    <li>3 ключевые гипотезы roadmap проверены</li>
+                                  </ul>
+                                </article>
+                              </div>
+                              <article class="preview-role__card">
+                                <div class="preview-role__card-head">
+                                  <div class="preview-role__label">Функциональные роли</div>
+                                  <span class="preview-role__edit" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M11.3 1.7l3 3-8.8 8.8H2.5v-3l8.8-8.8z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/></svg></span>
+                                </div>
+                                <ul class="preview-role__list">
+                                  <li><strong>Координатор</strong><span>Согласует приоритеты и фокус команды</span></li>
+                                  <li><strong>Мотиватор</strong><span>Драйвит delivery и темп решений</span></li>
+                                  <li><strong>Генератор идей</strong><span>Формирует гипотезы роста продукта</span></li>
+                                </ul>
+                              </article>
+                              <article class="preview-role__card preview-role__card--wide">
+                                <div class="preview-role__card-head">
+                                  <div class="preview-role__label">Навыки</div>
+                                  <span class="preview-role__edit" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M11.3 1.7l3 3-8.8 8.8H2.5v-3l8.8-8.8z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/></svg></span>
+                                </div>
+                                <div class="preview-role__tags preview-role__tags--skills">
+                                  <span>Product Lead</span>
+                                  <span>Analyst</span>
+                                  <span>UX Research</span>
+                                </div>
+                              </article>
+                              <article class="preview-role__card preview-role__card--wide preview-role__card--culture">
+                                <div class="preview-role__card-head">
+                                  <div class="preview-role__label">Culture fit</div>
+                                  <span class="preview-role__edit preview-role__edit--active" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M11.3 1.7l3 3-8.8 8.8H2.5v-3l8.8-8.8z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/></svg></span>
+                                </div>
+                                <div class="preview-role__culture-body">
+                                  <div class="preview-role__tags preview-role__tags--violet">
+                                    <span>лидерство</span>
+                                    <span>смыслы</span>
+                                    <span>автономность</span>
+                                  </div>
+                                  <p class="preview-role__hint">Платформа сформирует профиль для точного подбора по этим критериям.</p>
+                                </div>
+                              </article>
+                              <div class="preview-role__popup" role="dialog" aria-label="Culture fit">
+                                <div class="preview-role__popup-head">
+                                  <strong>Culture fit</strong>
+                                  <span class="preview-role__popup-meta">3 выбрано</span>
+                                </div>
+                                <section class="preview-role__popup-group">
+                                  <h4 class="preview-role__popup-group-title">Драйверы</h4>
+                                  <div class="preview-role__popup-options">
+                                    <span class="preview-role__popup-option preview-role__popup-option--selected">автономность</span>
+                                    <span class="preview-role__popup-option">коммуникация</span>
+                                    <span class="preview-role__popup-option">динамика</span>
+                                    <span class="preview-role__popup-option">системность</span>
+                                  </div>
+                                </section>
+                                <section class="preview-role__popup-group">
+                                  <h4 class="preview-role__popup-group-title">Профиль ценностей</h4>
+                                  <div class="preview-role__popup-options">
+                                    <span class="preview-role__popup-option preview-role__popup-option--selected">Смыслы</span>
+                                    <span class="preview-role__popup-option">Определённость</span>
+                                    <span class="preview-role__popup-option">Амбиции</span>
+                                    <span class="preview-role__popup-option">Теплота</span>
+                                    <span class="preview-role__popup-option">Статус</span>
+                                  </div>
+                                </section>
+                                <section class="preview-role__popup-group">
+                                  <h4 class="preview-role__popup-group-title">Карьерный код</h4>
+                                  <div class="preview-role__popup-options">
+                                    <span class="preview-role__popup-option preview-role__popup-option--selected">лидерство</span>
+                                    <span class="preview-role__popup-option">стратегия</span>
+                                    <span class="preview-role__popup-option">влияние</span>
+                                    <span class="preview-role__popup-option">экспертиза</span>
+                                  </div>
+                                </section>
+                              </div>
+                            </div>
+                          </main>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="how-dm__panel" data-how-panel="1" role="tabpanel" hidden>
+                  <div class="how-dm__shot how-dm__shot--laptop">
+                    <div class="how-dm__laptop" aria-label="Кандидаты с совпадением по ценностям">
+                      <div class="how-dm__laptop-bar" aria-hidden="true">
+                        <span class="how-dm__laptop-dot"></span>
+                        <span class="how-dm__laptop-dot"></span>
+                        <span class="how-dm__laptop-dot"></span>
+                      </div>
+                      <div class="how-dm__laptop-screen">
+                        <div class="how-dm__laptop-app">
+                          <aside class="preview-sidebar preview-sidebar--company how-dm__laptop-sidebar" aria-label="Навигация кабинета компании">
+                            <div class="preview-sidebar__brand">
+                              <span class="preview-sidebar__logo">Vibe<span>Hunt</span></span>
+                              <span class="preview-sidebar__badge">Business</span>
+                            </div>
+                            <nav class="preview-sidebar__nav">
+                              <span class="preview-nav">
+                                <svg class="preview-nav__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 8.5h14M8.5 8.5V17" stroke="currentColor" stroke-width="1.5"/></svg>
+                                Кабинет
+                              </span>
+                              <span class="preview-nav preview-nav--active preview-nav--company" aria-current="page">
+                                <svg class="preview-nav__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="6.5" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M7 6.5V5a3 3 0 0 1 6 0v1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+                                Рекрутинг
+                              </span>
+                              <span class="preview-nav">
+                                <svg class="preview-nav__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 14.5V8.5l6-3.5 6 3.5v6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 14.5v-3h4v3" stroke="currentColor" stroke-width="1.5"/></svg>
+                                Адаптация
+                              </span>
+                              <span class="preview-nav">
+                                <svg class="preview-nav__icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="2" stroke="currentColor" stroke-width="1.5"/><circle cx="4" cy="6" r="1.5" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="6" r="1.5" stroke="currentColor" stroke-width="1.5"/><circle cx="4" cy="14" r="1.5" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="14" r="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+                                Карта команды
+                              </span>
+                            </nav>
+                            <div class="preview-sidebar__user">
+                              <span class="preview-sidebar__avatar preview-sidebar__avatar--company" aria-hidden="true">М</span>
+                              <span class="preview-sidebar__user-info">
+                                <span class="preview-sidebar__name">Марина С.</span>
+                                <span class="preview-sidebar__email">hr@acme.test</span>
+                              </span>
+                            </div>
+                          </aside>
+                          <main class="preview-role preview-role--candidates" aria-label="Кандидаты позиции">
+                            <div class="preview-role__head">
+                              <div>
+                                <div class="preview-role__eyebrow">Рекрутинг · FinTech</div>
+                                <h3 class="preview-role__title">Senior Product Manager</h3>
+                              </div>
+                              <span class="preview-role__status">12 кандидатов</span>
+                            </div>
+                            <div class="preview-role__tabs" aria-hidden="true">
+                              <span class="preview-role__tab">Общее</span>
+                              <span class="preview-role__tab">Профиль роли</span>
+                              <span class="preview-role__tab preview-role__tab--active">Кандидаты</span>
+                              <span class="preview-role__tab">Встречи</span>
+                            </div>
+                            <div class="preview-candidates">
+                              <div class="preview-candidates__stages" aria-hidden="true">
+                                <span class="preview-candidates__stage-tab preview-candidates__stage-tab--active">Отклики</span>
+                                <span class="preview-candidates__stage-tab">I этап</span>
+                                <span class="preview-candidates__stage-tab">II этап</span>
+                                <span class="preview-candidates__stage-tab">Оффер</span>
+                              </div>
+                              <div class="preview-candidates__table-wrap">
+                                <table class="preview-candidates__table">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col"><span class="preview-candidates__sr">№</span></th>
+                                      <th scope="col"><span class="preview-candidates__sr">Фото</span></th>
+                                      <th scope="col">Имя</th>
+                                      <th scope="col">Функц. роли</th>
+                                      <th scope="col">Навыки</th>
+                                      <th scope="col">Culture fit</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr class="preview-candidates__row preview-candidates__row--active">
+                                      <td><span class="preview-candidates__num">1</span></td>
+                                      <td><span class="preview-candidates__avatar" aria-hidden="true">Д</span></td>
+                                      <td>
+                                        <span class="preview-candidates__name">Дмитрий</span>
+                                        <span class="preview-candidates__initials">К.</span>
+                                      </td>
+                                      <td>
+                                        <div class="preview-candidates__cell-tags">
+                                          <span>Координатор</span>
+                                          <span>Мотиватор</span>
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <div class="preview-candidates__cell-tags preview-candidates__cell-tags--skills">
+                                          <span>Product Lead</span>
+                                          <span>Analyst</span>
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <div class="preview-candidates__fit">
+                                          <strong>91%</strong>
+                                          <span>лидерство · смыслы</span>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr class="preview-candidates__row">
+                                      <td><span class="preview-candidates__num">2</span></td>
+                                      <td><span class="preview-candidates__avatar preview-candidates__avatar--muted" aria-hidden="true">И</span></td>
+                                      <td>
+                                        <span class="preview-candidates__name">Игорь</span>
+                                        <span class="preview-candidates__initials">М.</span>
+                                      </td>
+                                      <td>
+                                        <div class="preview-candidates__cell-tags">
+                                          <span>Генератор идей</span>
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <div class="preview-candidates__cell-tags preview-candidates__cell-tags--skills">
+                                          <span>UX Research</span>
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <div class="preview-candidates__fit">
+                                          <strong>88%</strong>
+                                          <span>лидерство · стратегия</span>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr class="preview-candidates__row">
+                                      <td><span class="preview-candidates__num">3</span></td>
+                                      <td><span class="preview-candidates__avatar preview-candidates__avatar--muted" aria-hidden="true">А</span></td>
+                                      <td>
+                                        <span class="preview-candidates__name">Анна</span>
+                                        <span class="preview-candidates__initials">С.</span>
+                                      </td>
+                                      <td>
+                                        <div class="preview-candidates__cell-tags">
+                                          <span>Координатор</span>
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <div class="preview-candidates__cell-tags preview-candidates__cell-tags--skills">
+                                          <span>Product Lead</span>
+                                        </div>
+                                      </td>
+                                      <td>
+                                        <div class="preview-candidates__fit">
+                                          <strong>78%</strong>
+                                          <span>смыслы · автономность</span>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <div class="preview-candidates__popup" role="dialog" aria-label="Карточка кандидата">
+                                  <div class="preview-candidates__popup-head">
+                                    <div class="preview-candidates__popup-person">
+                                      <span class="preview-candidates__popup-avatar" aria-hidden="true">Д</span>
+                                      <div>
+                                        <strong>Дмитрий К.</strong>
+                                        <span>Senior PM · FinTech</span>
+                                      </div>
+                                    </div>
+                                    <span class="preview-candidates__popup-score">91%</span>
+                                  </div>
+                                  <section class="preview-candidates__popup-section">
+                                    <h4 class="preview-candidates__popup-label">Функциональные роли</h4>
+                                    <div class="preview-candidates__popup-tags">
+                                      <span>Координатор</span>
+                                      <span>Мотиватор</span>
+                                    </div>
+                                  </section>
+                                  <section class="preview-candidates__popup-section">
+                                    <h4 class="preview-candidates__popup-label">Навыки</h4>
+                                    <div class="preview-candidates__popup-tags preview-candidates__popup-tags--skills">
+                                      <span>Product Lead</span>
+                                      <span>Analyst</span>
+                                    </div>
+                                  </section>
+                                  <section class="preview-candidates__popup-section">
+                                    <h4 class="preview-candidates__popup-label">Culture fit</h4>
+                                    <div class="preview-candidates__popup-tags preview-candidates__popup-tags--violet">
+                                      <span>лидерство</span>
+                                      <span>смыслы</span>
+                                      <span>автономность</span>
+                                    </div>
+                                  </section>
+                                </div>
+                              </div>
+                            </div>
+                          </main>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="how-dm__panel" data-how-panel="2" role="tabpanel" hidden>
+                  <article class="how-dm__mock how-dm__mock--meetings how-dm__mock--company">
+                    <div class="how-dm__mock-label">Автоматизация встреч</div>
+                    <div class="how-dm__mock-slot"><span>Вт, 10:00</span><strong>HR-скрининг · Zoom</strong></div>
+                    <div class="how-dm__mock-slot how-dm__mock-slot--active"><span>Ср, 14:00</span><strong>Интервью с PM · Google Meet</strong></div>
+                    <div class="how-dm__mock-slot"><span>Чт, 11:30</span><strong>Финал · нанимающий менеджер</strong></div>
+                    <p class="how-dm__mock-footnote">Бриф, календарь и транскрибация подключаются автоматически.</p>
+                  </article>
+                </div>
+                <div class="how-dm__panel" data-how-panel="3" role="tabpanel" hidden>
+                  <article class="how-dm__mock how-dm__mock--interview how-dm__mock--company">
+                    <div class="how-dm__mock-label">Анализ интервью</div>
+                    <ul class="how-dm__mock-list">
+                      <li><strong>Игорь М.</strong> · сильный culture fit, рекомендован к офферу</li>
+                      <li><strong>Дмитрий К.</strong> · высокий скоринг по лидерству и стратегии</li>
+                      <li><strong>Анна С.</strong> · нужна проверка по автономности в команде</li>
+                    </ul>
+                    <p class="how-dm__mock-footnote">Рекомендации формируются на основе профиля роли и транскриптов встреч.</p>
+                  </article>
+                </div>
+                <div class="how-dm__panel" data-how-panel="4" role="tabpanel" hidden>
+                  <article class="how-dm__mock how-dm__mock--offer how-dm__mock--company">
+                    <div class="how-dm__mock-label">Оффер и адаптация</div>
+                    <div class="how-dm__mock-plan">
+                      <div class="how-dm__mock-plan-item"><span>1</span><p>Подготовить оффер с учётом ценностей кандидата</p></div>
+                      <div class="how-dm__mock-plan-item"><span>2</span><p>Согласовать план адаптации с командой</p></div>
+                      <div class="how-dm__mock-plan-item"><span>3</span><p>Запустить онбординг в карте команды</p></div>
                     </div>
                   </article>
                 </div>

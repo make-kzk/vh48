@@ -23,17 +23,18 @@
   }
 
   document.body.addEventListener('click', (e) => {
-    const button = e.target.closest('button:not(:disabled)');
-    if (button) playButtonBounce(button);
-    const audienceSet = e.target.closest('[data-audience-set]');
-    if (audienceSet) {
-      setAudience(audienceSet.dataset.audienceSet);
-    }
-
     const audienceSwitch = e.target.closest('[data-audience-switch]');
     if (audienceSwitch) {
       setAudience(audienceSwitch.dataset.audienceSwitch);
       return;
+    }
+
+    const button = e.target.closest('button:not(:disabled)');
+    if (button) playButtonBounce(button);
+
+    const audienceSet = e.target.closest('[data-audience-set]');
+    if (audienceSet) {
+      setAudience(audienceSet.dataset.audienceSet);
     }
 
     const el = e.target.closest('[data-nav]');
@@ -54,21 +55,19 @@
   });
 
   function setAudience(mode) {
+    const landingSection = document.querySelector('.landing-dm[data-screen="landing"]');
+    if (landingSection?.dataset.audience === mode) return;
+
     const isEmployee = mode === 'employee';
-    const btnClasses = ['vh-btn--primary', 'vh-btn--secondary', 'vh-btn--outline-primary', 'vh-btn--outline-secondary'];
 
     document.querySelectorAll('[data-audience-switch]').forEach((btn) => {
       const isEmp = btn.dataset.audienceSwitch === 'employee';
-      btn.classList.remove(...btnClasses);
-
-      if (isEmployee) {
-        btn.classList.add(isEmp ? 'vh-btn--primary' : 'vh-btn--outline-secondary');
-      } else {
-        btn.classList.add(isEmp ? 'vh-btn--outline-primary' : 'vh-btn--secondary');
-      }
-
       btn.setAttribute('aria-selected', String(isEmp === isEmployee));
     });
+
+    if (landingSection) {
+      landingSection.dataset.audience = mode;
+    }
 
     const featuresSection = document.getElementById('features');
     if (featuresSection) {
@@ -82,6 +81,15 @@
         const isActive = preview.dataset.audiencePreview === mode;
         preview.hidden = !isActive;
       });
+    }
+
+    const howSection = document.getElementById('how');
+    if (howSection) {
+      howSection.dataset.audienceView = mode;
+      howSection.querySelectorAll('[data-audience-how]').forEach((layout) => {
+        layout.hidden = layout.dataset.audienceHow !== mode;
+      });
+      requestAnimationFrame(() => howRefreshers.forEach((refresh) => refresh()));
     }
   }
 
@@ -122,10 +130,10 @@
 
   document.querySelectorAll('.cjm-dm').forEach(initCjm);
 
-  function initHow(how) {
-    const indicator = how.querySelector('.how-dm__indicator');
-    const steps = [...how.querySelectorAll('.how-dm__step')];
-    const panels = [...how.querySelectorAll('.how-dm__panel')];
+  function initHow(layout) {
+    const indicator = layout.querySelector('.how-dm__indicator');
+    const steps = [...layout.querySelectorAll('.how-dm__step')];
+    const panels = [...layout.querySelectorAll('.how-dm__panel')];
     if (!indicator || !steps.length) return;
 
     function setHowStep(index) {
@@ -145,7 +153,7 @@
       });
 
       const activeStep = steps[index];
-      const rail = how.querySelector('.how-dm__rail');
+      const rail = layout.querySelector('.how-dm__rail');
       const stepRect = activeStep.getBoundingClientRect();
       const railRect = rail.getBoundingClientRect();
       indicator.style.transform = `translateY(${stepRect.top - railRect.top}px)`;
@@ -163,7 +171,7 @@
     setHowStep(0);
   }
 
-  document.querySelectorAll('.how-dm').forEach(initHow);
+  document.querySelectorAll('[data-audience-how]').forEach(initHow);
 
   window.addEventListener('resize', () => {
     requestAnimationFrame(() => {
