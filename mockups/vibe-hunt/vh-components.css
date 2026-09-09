@@ -18,6 +18,71 @@ a:hover { color: var(--vh-color-primary); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Bounce — базовые правила для всех кнопок */
+@keyframes vh-btn-bounce {
+  0%, 100% { transform: scale(1); }
+  28% { transform: scale(var(--vh-bounce-press, 0.94)); }
+  58% { transform: scale(var(--vh-bounce-peak, 1.05)); }
+  82% { transform: scale(0.99); }
+}
+
+button:not(:disabled) {
+  --vh-bounce-peak: 1.05;
+  --vh-bounce-press: 0.94;
+  --vh-bounce-duration: 0.42s;
+  transform-origin: center;
+}
+
+button:not(:disabled).vh-bounce-play {
+  animation: vh-btn-bounce var(--vh-bounce-duration) cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.vh-btn {
+  --vh-bounce-peak: 1.06;
+  --vh-bounce-duration: 0.44s;
+}
+
+.vh-btn--primary,
+.vh-btn--secondary {
+  --vh-bounce-peak: 1.08;
+  --vh-bounce-press: 0.92;
+  --vh-bounce-duration: 0.46s;
+}
+
+.vh-btn--outline-primary,
+.vh-btn--outline-secondary {
+  --vh-bounce-peak: 1.06;
+  --vh-bounce-duration: 0.43s;
+}
+
+.vh-btn--ghost {
+  --vh-bounce-peak: 1.04;
+  --vh-bounce-press: 0.96;
+  --vh-bounce-duration: 0.4s;
+}
+
+.vh-btn--lg {
+  --vh-bounce-peak: 1.07;
+  --vh-bounce-duration: 0.48s;
+}
+
+.vh-logo {
+  --vh-bounce-peak: 1.04;
+  --vh-bounce-press: 0.96;
+  --vh-bounce-duration: 0.38s;
+}
+
+.vh-login-link {
+  --vh-bounce-peak: 1.03;
+  --vh-bounce-duration: 0.36s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button:not(:disabled).vh-bounce-play {
+    animation: none;
+  }
+}
+
 .vh-container {
   max-width: var(--vh-container);
   margin: 0 auto;

@@ -14,7 +14,17 @@
     requestAnimationFrame(() => cjmRefreshers.forEach((refresh) => refresh()));
   }
 
+  function playButtonBounce(button) {
+    if (!button || button.disabled) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    button.classList.remove('vh-bounce-play');
+    void button.offsetWidth;
+    button.classList.add('vh-bounce-play');
+  }
+
   document.body.addEventListener('click', (e) => {
+    const button = e.target.closest('button:not(:disabled)');
+    if (button) playButtonBounce(button);
     const audienceSet = e.target.closest('[data-audience-set]');
     if (audienceSet) {
       setAudience(audienceSet.dataset.audienceSet);
@@ -34,6 +44,12 @@
     if (target !== history[history.length - 1]) {
       history.push(target);
       showScreen(target);
+    }
+  });
+
+  document.body.addEventListener('animationend', (e) => {
+    if (e.animationName === 'vh-btn-bounce' && e.target instanceof HTMLButtonElement) {
+      e.target.classList.remove('vh-bounce-play');
     }
   });
 
@@ -57,6 +73,15 @@
     const featuresSection = document.getElementById('features');
     if (featuresSection) {
       featuresSection.dataset.audienceView = mode;
+    }
+
+    const heroPreviewWrap = document.querySelector('.hero-dm__preview-wrap');
+    if (heroPreviewWrap) {
+      heroPreviewWrap.dataset.audienceView = mode;
+      heroPreviewWrap.querySelectorAll('[data-audience-preview]').forEach((preview) => {
+        const isActive = preview.dataset.audiencePreview === mode;
+        preview.hidden = !isActive;
+      });
     }
   }
 
