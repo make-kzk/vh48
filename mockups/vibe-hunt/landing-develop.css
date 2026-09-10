@@ -2373,6 +2373,10 @@
   border-bottom-color: var(--vh-color-primary);
 }
 
+.landing-dm[data-audience="company"] .how-dm__module-tab[aria-selected="true"] {
+  border-bottom-color: var(--vh-color-secondary);
+}
+
 .landing-dm .how-dm__module-panel {
   display: none;
 }
@@ -2389,15 +2393,26 @@
 }
 
 .landing-dm .how-dm__mock--waitlist {
-  max-width: 28rem;
+  max-width: 32rem;
   width: 100%;
 }
 
 .landing-dm .how-dm__waitlist {
   display: flex;
   flex-direction: column;
-  gap: 0.875rem;
+  gap: 1rem;
   margin-top: 0.25rem;
+}
+
+.landing-dm .how-dm__waitlist-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-end;
+}
+
+.landing-dm .how-dm__waitlist-row .how-dm__waitlist-field {
+  flex: 1;
+  min-width: 0;
 }
 
 .landing-dm .how-dm__waitlist-field {
@@ -2438,8 +2453,49 @@
 }
 
 .landing-dm .how-dm__waitlist-btn {
-  align-self: flex-start;
-  margin-top: 0.25rem;
+  flex-shrink: 0;
+  align-self: flex-end;
+  white-space: nowrap;
+  min-height: 2.75rem;
+  padding: 0.625rem 1rem;
+  font-size: 0.8125rem;
+}
+
+.landing-dm[data-audience="company"] [data-audience-how="company"] .how-dm__waitlist-btn.vh-btn--primary {
+  background: var(--vh-color-secondary);
+  border-color: var(--vh-color-secondary);
+}
+
+.landing-dm[data-audience="company"] [data-audience-how="company"] .how-dm__waitlist-btn.vh-btn--primary:hover {
+  background: var(--vh-color-secondary-h);
+  border-color: var(--vh-color-secondary-h);
+}
+
+.landing-dm[data-audience="company"] [data-audience-how="company"] .how-dm__waitlist-field input:focus,
+.landing-dm[data-audience="company"] [data-audience-how="company"] .how-dm__waitlist-field textarea:focus {
+  border-color: rgba(107, 78, 255, 0.45);
+  box-shadow: 0 0 0 3px rgba(107, 78, 255, 0.12);
+}
+
+.landing-dm[data-audience="company"] .audience-dm__cta.vh-btn--outline-primary {
+  color: var(--vh-color-secondary);
+  border-color: var(--vh-color-secondary);
+}
+
+.landing-dm[data-audience="company"] .audience-dm__cta.vh-btn--outline-primary:hover {
+  background: var(--vh-color-secondary-l);
+}
+
+@media (max-width: 540px) {
+  .landing-dm .how-dm__waitlist-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .landing-dm .how-dm__waitlist-btn {
+    width: 100%;
+    align-self: stretch;
+  }
 }
 
 .landing-dm .how-dm__layout {
@@ -5423,6 +5479,11 @@
   background: #fff;
 }
 
+.landing-dm .stats-dm[data-audience-view="employee"] [data-audience-panel="company"],
+.landing-dm .stats-dm[data-audience-view="company"] [data-audience-panel="employee"] {
+  display: none;
+}
+
 .landing-dm .stats-dm__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -5447,6 +5508,10 @@
   color: var(--vh-color-primary);
 }
 
+.landing-dm .stats-dm[data-audience-view="company"] .stat-dm__value {
+  color: #6b4eff;
+}
+
 .landing-dm .stat-dm__label {
   font-size: 0.9375rem;
   color: var(--dm-muted);
@@ -5465,13 +5530,22 @@
   margin: 0 auto;
 }
 
-.landing-dm .cta-dm h2 {
+.landing-dm .cta-dm__title {
   font-family: Geologica, Inter, sans-serif;
   font-size: clamp(1.75rem, 3vw, 2.35rem);
   font-weight: 700;
   color: #fff;
-  margin-bottom: 0.75rem;
+  margin: 0 0 0.75rem;
   letter-spacing: -0.02em;
+}
+
+.landing-dm .cta-dm__title-line {
+  display: none;
+}
+
+.landing-dm[data-audience="employee"] .cta-dm__title-line[data-audience-tagline="employee"],
+.landing-dm[data-audience="company"] .cta-dm__title-line[data-audience-tagline="company"] {
+  display: block;
 }
 
 .landing-dm .cta-dm p {
@@ -5479,6 +5553,15 @@
   font-size: 1.0625rem;
   margin-bottom: 2rem;
   line-height: 1.6;
+}
+
+.landing-dm .cta-dm__btn {
+  min-height: 3.25rem;
+  padding: 0 1.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  border-radius: 0.875rem;
 }
 
 /* ── Footer ── */
@@ -5497,8 +5580,14 @@
   gap: 1rem;
 }
 
-.landing-dm .footer-dm .vh-logo {
-  color: var(--dm-ink);
+.landing-dm .footer-dm__logo {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  --vh-bounce-peak: 1.04;
+  --vh-bounce-duration: 0.38s;
 }
 
 .landing-dm .footer-dm__nav {

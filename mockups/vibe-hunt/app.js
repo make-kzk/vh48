@@ -99,6 +99,14 @@
       });
       requestAnimationFrame(() => howRefreshers.forEach((refresh) => refresh()));
     }
+
+    const statsSection = document.getElementById('stats');
+    if (statsSection) {
+      statsSection.dataset.audienceView = mode;
+      statsSection.querySelectorAll('[data-audience-panel]').forEach((panel) => {
+        panel.hidden = panel.dataset.audiencePanel !== mode;
+      });
+    }
   }
 
   window.switchTab = setAudience;
@@ -226,7 +234,7 @@
   }
 
   document.querySelectorAll('[data-how-steps]').forEach(initHow);
-  document.querySelectorAll('[data-audience-how="employee"]').forEach(initHowModules);
+  document.querySelectorAll('[data-audience-how]').forEach(initHowModules);
 
   document.querySelectorAll('.audience-dm__segments').forEach((track) => {
     let isDragging = false;
