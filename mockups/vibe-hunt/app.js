@@ -74,6 +74,14 @@
       featuresSection.dataset.audienceView = mode;
     }
 
+    const audienceSection = document.getElementById('audience');
+    if (audienceSection) {
+      audienceSection.dataset.audienceView = mode;
+      audienceSection.querySelectorAll('[data-audience-panel]').forEach((panel) => {
+        panel.hidden = panel.dataset.audiencePanel !== mode;
+      });
+    }
+
     const heroPreviewWrap = document.querySelector('.hero-dm__preview-wrap');
     if (heroPreviewWrap) {
       heroPreviewWrap.dataset.audienceView = mode;
@@ -130,11 +138,56 @@
 
   document.querySelectorAll('.cjm-dm').forEach(initCjm);
 
+  function initHowModules(wrapper) {
+    const tabs = [...wrapper.querySelectorAll('.how-dm__module-tab')];
+    const panels = [...wrapper.querySelectorAll('[data-how-module-panel]')];
+    if (!tabs.length || !panels.length) return;
+
+    function setHowModule(index) {
+      tabs.forEach((tab, i) => {
+        const isActive = i === index;
+        tab.setAttribute('aria-selected', String(isActive));
+        tab.tabIndex = isActive ? 0 : -1;
+      });
+
+      panels.forEach((panel, i) => {
+        const isActive = i === index;
+        panel.classList.toggle('how-dm__module-panel--active', isActive);
+        panel.hidden = !isActive;
+      });
+
+      if (index === 0) {
+        requestAnimationFrame(() => howRefreshers.forEach((refresh) => refresh()));
+      }
+    }
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => setHowModule(index));
+    });
+
+    setHowModule(0);
+  }
+
   function initHow(layout) {
     const indicator = layout.querySelector('.how-dm__indicator');
     const steps = [...layout.querySelectorAll('.how-dm__step')];
     const panels = [...layout.querySelectorAll('.how-dm__panel')];
+    const audience = layout.dataset.howSteps || 'how';
     if (!indicator || !steps.length) return;
+
+    steps.forEach((step, index) => {
+      const trigger = step.querySelector('.how-dm__tab');
+      const tabPanel = step.querySelector('.how-dm__tab-panel');
+      const tabId = `${audience}-how-tab-${index}`;
+      const panelId = `${audience}-how-panel-${index}`;
+
+      trigger.id = tabId;
+      trigger.setAttribute('aria-controls', panelId);
+      if (tabPanel) {
+        tabPanel.id = panelId;
+        tabPanel.setAttribute('aria-labelledby', tabId);
+      }
+    });
 
     function setHowStep(index) {
       steps.forEach((step, i) => {
@@ -143,6 +196,7 @@
         const trigger = step.querySelector('.how-dm__tab');
         const tabPanel = step.querySelector('.how-dm__tab-panel');
         trigger.setAttribute('aria-selected', String(isActive));
+        trigger.tabIndex = isActive ? 0 : -1;
         if (tabPanel) tabPanel.hidden = !isActive;
       });
 
@@ -171,7 +225,40 @@
     setHowStep(0);
   }
 
-  document.querySelectorAll('[data-audience-how]').forEach(initHow);
+  document.querySelectorAll('[data-how-steps]').forEach(initHow);
+  document.querySelectorAll('[data-audience-how="employee"]').forEach(initHowModules);
+
+  document.querySelectorAll('.audience-dm__segments').forEach((track) => {
+    let isDragging = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    track.addEventListener('pointerdown', (e) => {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      isDragging = true;
+      startX = e.clientX;
+      scrollLeft = track.scrollLeft;
+      track.setPointerCapture(e.pointerId);
+      track.classList.add('audience-dm__segments--dragging');
+    });
+
+    track.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+      track.scrollLeft = scrollLeft - (e.clientX - startX);
+    });
+
+    const endDrag = (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      track.classList.remove('audience-dm__segments--dragging');
+      if (track.hasPointerCapture(e.pointerId)) {
+        track.releasePointerCapture(e.pointerId);
+      }
+    };
+
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
+  });
 
   window.addEventListener('resize', () => {
     requestAnimationFrame(() => {
